@@ -91,11 +91,10 @@ google_ad_height = 15;
 		<div class="mini" onmouseover="this.style.backgroundPosition='bottom';PlayAudio('bleep');" onmouseout="this.style.backgroundPosition='top'" onclick="ShowMiniGame()"></div>
 		<div style="position:absolute;width:289px;height:127px;left:480px;top:307px;background:url(images/interface/SelectorScreen_Shadow_Challenge.png)"></div>
 		<div class="riddle" onmouseover="this.style.backgroundPosition='bottom';PlayAudio('bleep');" onmouseout="this.style.backgroundPosition='top'" onclick="ShowRiddleGame()"></div>
-		<div class="Sunflower_trophy"><script>document.write('<img onclick="PlayAudio(\'buttonclick\');alert(\'游戏数据中心即将开放，敬请期待！\')" title="游戏数据中心即将开放！" alt="游戏数据中心即将开放！！" src="images/interface/Sunflower_trophy'+($User.Browser.IE?8:32)+'.png">')</script></div>
 		<div class="handbook" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ViewHandBook()"></div>
 		<div id="ZombieHand"></div> <!--僵尸手-->
 		<div id="dNameDiv0">
-			<div id="dName">&lt;rtty&gt;</div>
+			<div id="dName">&lt;ti&gt;</div>
 			<div id="dNameDiv1" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="ShowLoginDiv()"></div>
 			<div id="dNameDiv2"></div>
 		</div>
@@ -266,9 +265,6 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 				<div>
 					<div class="inx0" title="我玩僵尸，跟电脑的植物方作战" onclick="ShowRiddle0()"></div>
 				</div>
-				<div style="left:50%">
-					<div class="inx1" title="我玩僵尸或者植物，跟玩家的植物或者僵尸作战" onclick="ShowRiddle1()"></div>
-				</div>
 			</div>
 			<!--单机界面-->
 			<div id="dRiddle0">
@@ -312,27 +308,6 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 					</table>
 				</div>
 				<div class="button" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="ReturnRiddleInx()">益智模式索引</div>
-			</div>
-			<!--对战界面-->
-			<div id="dRiddle1">
-				<div style="position:relative;width:862px;font-size:12px;margin-top:1px;margin-left:auto;margin-right:auto;color:#000">
-					<button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(0)">所有游戏</button><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(1)">我创建的</button><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(2)">我玩过的</button>
-					&nbsp;&nbsp;<input type=text id="tRiddleID" size="15"><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(4,$('tRiddleID').value)">查作者</button><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(5,$('tRiddleID').value)">查标题</button><button class="jhp" style="height:23px" onclick="window.frames['fRiddleAlreadyCreateGame'].SearchLvl(3,$('tRiddleID').value)">查序号</button>
-					&nbsp; &nbsp; &nbsp; &nbsp; 列表风格
-					<input name="rList" type="radio" value="图形" id="rLPic" onclick="addCookie('JSPVZIZList',0);location.reload();"><label for="rLPic">图形</label>
-					<input name="rList" type="radio" value="文字" id="rLText" onclick="addCookie('JSPVZIZList',1);location.reload();"><label for="rLText">文字</label>
-					<script>
-					getCookie("JSPVZIZList")==1 ? ($('rLText').checked=true) : (
-						$('rLPic').checked=true,
-						document.write('&nbsp;&nbsp;<select size="1" name="sOrder1" id="sOrder1"><option>标题</option><option>阳光</option><option>作者</option><option selected>日期</option><option>访问</option><option>过关</option><option>好评</option><option>中评</option><option>差评</option></select><select size="1" name="sOrder2" id="sOrder2"><option value="asc">升序</option><option value="desc" selected>降序</option></select><button class="jhp" style="height:23px" onclick="window.frames[\'fRiddleAlreadyCreateGame\'].ChangeOrderAD()">排序</button>')
-					);
-					</script>
-					<div style="border:1px solid #000;height:465px;width:100%">
-						<iframe name="fRiddleAlreadyCreateGame" id="fRiddleAlreadyCreateGame" marginwidth="1" marginheight="1" height="460" width="100%" scrolling="no" border="0" frameborder="0" allowtransparency="true" style="background-color:transparent"></iframe>
-					</div>
-				</div>
-				<div class="button" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="ReturnRiddleInx()">益智模式索引</div>
-				<div class="button" style="left:204px" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'"  onclick="if($User.Visitor.UserName!='游客'||confirm('游客只能体验创建功能无法存档\n请使用注册用户以保存你的创意！'))SelectModal('ImZombieCreateGame')">创建我是僵尸关卡</div>
 			</div>
 			<div id="dRiddleClose" onmouseover="this.style.backgroundPosition='bottom'" onmouseout="this.style.backgroundPosition='top'" onclick="HiddenRiddleGame()">关 闭&nbsp;</div>
 		</div>
@@ -530,7 +505,7 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 
 <div id="dHandBookPZ" class="WindowFrame Almanac_PlantBack">
 	<div id="dHandBookP">
-		<div class="title">图鉴——芝麻</div>
+		<div class="title">图鉴——植物</div>
 		<div id="dHandBookPCard"></div>
 		<div id="pPlantBack"></div>
 		<div class="list">
@@ -575,26 +550,13 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 <!--开发进度显示-->
 <div id="dProcess">
 	<div id="dProcess2">
-		<span id="sFailed"><br><br>未成功从作者网站上加载到进度文件<br>如果互联网未连接或者作者网站无法成功打开则无法查看最新进度显示！</span>
+		<span id="sFailed"><br><br>滚木<br>如果互联网未连接或者作者网站无法成功打开则无法查看最新进度显示！</span>
 	</div>
 	<br>
 	<input class="button" type="button" value="关闭" onclick="SetHidden($('dProcess'))">
 	<script>document.write('<a style="margin-left:50px;cursor:pointer;color:#FF0;font-size:15px;text-decoration:none;font-weight:bold" target="_blank" href="http://'+$User.AuthorWebsite+'/process.htm">查看更多开发进度信息 >>></a>');</script>
 </div>
 <div id="oEmbed"></div>
-
-<!--聊天窗口-->
-<div id="dChat">
-	<div id="dChatView">
-		<div class="bg"></div>
-		<div>
-			<iframe name="ChatView" id="ChatView" src="asp/ViewChat.asp" allowtransparency="true" frameborder="0" width="842" height="585" scrolling="no"></iframe>
-		</div>
-		<div class="IF2">
-			<iframe id="IF2" name="IF2" style="display:none" allowtransparency="true" src="asp/ChatSend.asp?C=10000" marginwidth="0" marginheight="0" height="35" width="100%" scrolling="no" border="0" frameborder="0"></iframe>
-		</div>
-	</div>
-</div>
 
 <!--公告和分享-->
 <div class="Announcement">
