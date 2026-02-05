@@ -571,7 +571,17 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 	<script>document.write('<a style="margin-left:50px;cursor:pointer;color:#FF0;font-size:15px;text-decoration:none;font-weight:bold" target="_blank" href="http://'+$User.AuthorWebsite+'/process.htm">查看更多开发进度信息 >>></a>');</script>
 </div>
 <div id="oEmbed"></div>
-
+<div id="dChat">
+	<div id="dChatView">
+		<div class="bg"></div>
+		<div>
+			<iframe name="ChatView" id="ChatView" src="asp/ViewChat.asp" allowtransparency="true" frameborder="0" width="842" height="585" scrolling="no"></iframe>
+		</div>
+		<div class="IF2">
+			<iframe id="IF2" name="IF2" style="display:none" allowtransparency="true" src="asp/ChatSend.asp?C=10000" marginwidth="0" marginheight="0" height="35" width="100%" scrolling="no" border="0" frameborder="0"></iframe>
+		</div>
+	</div>
+</div>
 <!--公告和分享-->
 <div class="Announcement">
 	<div class="d1">
