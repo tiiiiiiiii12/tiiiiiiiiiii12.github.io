@@ -2,12 +2,12 @@
 	let Normal_Zombie_Wave = [3, 5, 10, 15, 20, 25, 30, 35, 40]; // 默认僵尸出现的波 
 
 	oS.Init({
-		PName: [oPeashooter, oSunFlower, oCherryBomb, oWallNut, oPotatoMine, oSnowPea, oChomper, oRepeater, oPuffShroom, oSunShroom, oFumeShroom, oGraveBuster, oHypnoShroom, oScaredyShroom, oIceShroom, oDoomShroom, oLilyPad, oSquash, oThreepeater, oTangleKelp, oJalapeno, oSpikeweed, oTorchwood, oTallNut, oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead, oFlowerPot, oCoffeeBean, oGarlic, oTorchwood_Pro, oGatlingPea_Pro, oGloomShroom, oTwinSunflower, oCabbage_Pro, oMelonPult_Pro],
+		PName: [oPeashooter, oSunFlower, oCherryBomb, oWallNut, oPotatoMine, oSnowPea, oChomper, oRepeater, oPuffShroom, oSunShroom, oFumeShroom, oGraveBuster, oHypnoShroom, oScaredyShroom, oIceShroom, oDoomShroom, oLilyPad, oSquash, oThreepeater, oTangleKelp, oJalapeno, oSpikeweed, oTorchwood, oTallNut, oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead, oFlowerPot, oCoffeeBean, oGarlic,oGloomShroom,oTwinSunflower],
 		ZName: [oBackupDancer, oZombie, oZombie2, oZombie3, oPoleVaultingZombie, oConeheadZombie, oBucketheadZombie, oNewspaperZombie, oScreenDoorZombie, oFootballZombie, oDancingZombie, oDuckyTubeZombie1, oDuckyTubeZombie2, oDuckyTubeZombie3, oDolphinRiderZombie, oSnorkelZombie, oZomboni, oJackinTheBoxZombie, oBalloonZombie],
-		StageCard_1: [oPeashooter, oSunFlower, oCherryBomb, oWallNut, oPotatoMine, oSnowPea, oChomper, oRepeater, oCabbage_Pro],
+		StageCard_1: [oPeashooter, oSunFlower, oCherryBomb, oWallNut, oPotatoMine, oSnowPea, oChomper, oRepeater],
 		StageCard_2: [oSunFlower, oRepeater, oPuffShroom, oSunShroom, oFumeShroom, oHypnoShroom, oScaredyShroom, oIceShroom, oDoomShroom],
-		StageCard_3: [oCherryBomb, oDoomShroom, oSunFlower, oRepeater, oFumeShroom, oGloomShroom, oLilyPad, oSquash, oThreepeater, oTangleKelp, oJalapeno, oSpikeweed, oTorchwood, oTallNut, oTwinSunflower, oMelonPult_Pro],
-		StageCard_4: [oCherryBomb, oSunFlower, oRepeater, oFumeShroom, oSpikeweed, oGatlingPea_Pro, oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead, oTorchwood_Pro],
+		StageCard_3: [oCherryBomb, oDoomShroom, oSunFlower, oRepeater, oFumeShroom, oGloomShroom, oLilyPad, oSquash, oThreepeater, oTangleKelp, oJalapeno, oSpikeweed, oTorchwood, oTallNut, oTwinSunflower],
+		StageCard_4: [oCherryBomb, oSunFlower, oRepeater, oFumeShroom, oSpikeweed, oGatlingPea_Pro, oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead],
 		StageZCard_1: [oZombie, oPoleVaultingZombie, oConeheadZombie, oBucketheadZombie],
 		StageZCard_2: [oNewspaperZombie, oScreenDoorZombie, oFootballZombie, oDancingZombie],
 		StageZCard_3: [oDuckyTubeZombie1, oDuckyTubeZombie2, oDuckyTubeZombie3, oDolphinRiderZombie, oSnorkelZombie],
@@ -30,7 +30,7 @@
 			StopMusic(), PlayMusic(oS.LoadMusic = oS.StartGameMusic);
 			SetVisible($("tdShovel"), $("dFlagMeter"), $("dTop")), oS.InitLawnMower();
 
-			NewEle("DivTeach", "div", 0, { innerHTML: "在最后一波结束之前获得4000阳光！" }, EDAll);
+			NewEle("DivTeach", "div", 0， { innerHTML: "在最后一波结束之前获得4000阳光！" }, EDAll);
 			oSym.addTask(500, function() { ClearChild($("DivTeach")); }, []); // 提示字
 
 			oSym.addTask(100, function() { (oP.FlagZombies != 31) ? oSym.addTask(100, arguments.callee) : oGd.MoveFogLeft(); }); // 雾
@@ -147,4 +147,5 @@
 		MonitorCard: function(a) {},
 		SummonZombie: function(id, e, b) { ++oP.NumZombies, asyncInnerHTML((a = new id).CustomBirth(e, b, 1, "auto"), function(n, m) { EDPZ.appendChild(n); m.Birth(); }, a); return a; }
 	});
+
 })();
