@@ -30,7 +30,7 @@
 			StopMusic(), PlayMusic(oS.LoadMusic = oS.StartGameMusic);
 			SetVisible($("tdShovel"), $("dFlagMeter"), $("dTop")), oS.InitLawnMower();
 
-			NewEle("DivTeach", "div", 0， { innerHTML: "在最后一波结束之前获得4000阳光！" }, EDAll);
+			NewEle("DivTeach", "div", 0, { innerHTML: "在最后一波结束之前获得4000阳光！" }, EDAll);
 			oSym.addTask(500, function() { ClearChild($("DivTeach")); }, []); // 提示字
 
 			oSym.addTask(100, function() { (oP.FlagZombies != 31) ? oSym.addTask(100, arguments.callee) : oGd.MoveFogLeft(); }); // 雾
@@ -149,3 +149,4 @@
 	});
 
 })();
+
