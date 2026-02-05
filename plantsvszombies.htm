@@ -600,17 +600,6 @@ $User.Client.PC&&$User.HTTP?(
 
 //ggadsense
 ShowAD();
-
-(function(){
-	var Search=location.search,ar,Server=$User.Server,List=Server.List;
-	Search?(
-		ar=Search.split('?')[1].split('&'),
-		$('baseURL').href=Server.SpeedURL=List[Server.SpeedInx=ar[0]][1],
-		Server.DataURL=List[Server.DataInx=ar[1]][1],
-		document.write('<script src="'+List[Server.DataInx][1]+'asp/GetUser.asp"></scrip'+'t>')
-	):document.write('<script src="asp/GetUser.asp"></scrip'+'t>');
-})();
-
 //初始化系统对象
 InitGame();
 </script>
