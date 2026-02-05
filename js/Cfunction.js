@@ -1,6 +1,5 @@
 var $User = function() {
 	var b = navigator.platform,
-rose = prompt('请输入您的名字'),
 	i = navigator.userAgent,
 	f = (b == "Win32" || b == "Windows"),
 	g = (b == "Mac68K" || b == "MacPPC" || b == "Macintosh"),
@@ -1427,7 +1426,7 @@ InitHandBookPCard = function() {
 InitHandBookZCard = function() {
 	PlayAudio("gravebutton");
 	var d = "",
-	g, f, e = [oZombie, oFlagZombie, oConeheadZombie, oPoleVaultingZombie, oBucketheadZombie, oNewspaperZombie,oNewspaperZombie2,oScreenDoorZombie,oFootballZombie,oDancingZombie,oBackupDancer,oDuckyTubeZombie1,oSnorkelZombie,oZomboni,oDolphinRiderZombie,oImp,oJackinTheBoxZombie,oBalloonZombie],
+	g, f, e = [oZombie, oFlagZombie, oConeheadZombie, oPoleVaultingZombie, oBucketheadZombie, oNewspaperZombie,oScreenDoorZombie,oFootballZombie,oDancingZombie,oBackupDancer,oDuckyTubeZombie1,oSnorkelZombie,oZomboni,oDolphinRiderZombie,oImp,oJackinTheBoxZombie,oBalloonZombie],
 	a = e.length,
 	b = 0,
 	c;
@@ -2332,7 +2331,7 @@ HiddenOptions = function() {
 ViewHandBook = function() {
 	SetNone($("dOptionsMenuback"), $("dOptionsMenu"));
 	oS.Lvl ? (AllAudioPaused(), PlayAudio("gravebutton"), SetNone($("dSurface")), oSym.Stop(), innerText($("dMenu0"), "回到游戏"), $("dMenu1").onclick = null) : (AllAudioPaused(), PlayAudio("tap"));
-	PlayAudio("yaogun");
+	PlayAudio("Look up at the Sky");
 	SetVisible($("dHandBook"))
 },
 ReturnHandBookInx = function() {
@@ -2342,7 +2341,7 @@ ReturnHandBookInx = function() {
 },
 CloseHandBook = function() {
 	PlayAudio("tap");
-	StopAudio("yaogun");
+	StopAudio("Look up at the Sky");
 	oS.Lvl ? ResetGame($("dMenu0")) : oSym.addTask(100, AllAudioPauseCanceled);
 	SetNone($("dHandBookP"), $("dHandBookZ"));
 	SetHidden($("dHandBookPZ"), $("dHandBook"))
