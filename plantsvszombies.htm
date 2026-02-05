@@ -222,19 +222,13 @@ LvlList=function(BLvl,SLvl1,SLvl2){
 							'Boom','核爆！','hebao.png',
 							'FlightOfFancy','我心飞翔','woxinfeixiang.png',
 							'FlightOfFancy2','我心飞翔2','woxingfeixiang2.png',
-							'FlightOfFancy3','我心飞翔3','woxinfeixiang3.png',
 							'DisposableProducts','一次性消费','yicixingxiaofei.gif',
 							'StrongLevel','超乎寻常的压力！','yali.gif',
 							'TestUHeart','你的心脏够强劲吗？','xinzang.png',
 							'ZombieRun','僵尸快跑！','jiangshikuaipao.png',
 							'MassGrave','乱葬岗','luanzanggang.png',
 							'DependOnHeavenForFood','靠天吃饭','kaotianchifan.png',
-							'CanYouDigIt','攻守兼备','gongshoujianbei.jpg',
-							'jiajuewang','假·绝望','jiajuewang.png',
-							'二爷海','二爷海','jiajuewang.png',
-							'dong','测试','shiduojinhua.png',
-                            'wujin','无尽关卡','shiduojinhua.png',
-							'boss','??','DailyLevel.png'
+							'CanYouDigIt','攻守兼备','gongshoujianbei.jpg'
 						], v, i = 0, n, l = ar.length, s = "";
 
 						for (n = 0; n < l; n += 3) {
@@ -601,7 +595,7 @@ $User.Client.PC&&$User.HTTP?(
 	//非电脑或者非http协议，默认自动拾取阳光
 	oS.AutoSun=1,$('cAutoSun').checked=true,
 	//默认不静音
-	oS.Silence=0,$('cSilence').checked=false
+	oS。Silence=0,$('cSilence').checked=false
 );
 
 //ggadsense
@@ -615,7 +609,6 @@ ShowAD();
 		Server.DataURL=List[Server.DataInx=ar[1]][1],
 		document.write('<script src="'+List[Server.DataInx][1]+'asp/GetUser.asp"></scrip'+'t>')
 	):document.write('<script src="asp/GetUser.asp"></scrip'+'t>');
-	$('fRiddleAlreadyCreateGame').src='asp/GetImZombieCreateGameList222.asp?'+Math.random();
 })();
 
 //初始化系统对象
@@ -629,6 +622,3 @@ a;}
 <script id="JSPVZ"></script>
 </body>
 </html>
-
-
-
