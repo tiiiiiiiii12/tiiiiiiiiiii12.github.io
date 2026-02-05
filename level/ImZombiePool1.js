@@ -55,3 +55,4 @@ oS.Init({
 	Set_Level: __Template_IZ_ZUMMON_FUNC__
 });
 
+
