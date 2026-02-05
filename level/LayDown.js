@@ -7,7 +7,7 @@
 		StageCard_1: [oPeashooter, oSunFlower, oCherryBomb, oWallNut, oPotatoMine, oSnowPea, oChomper, oRepeater],
 		StageCard_2: [oSunFlower, oRepeater, oPuffShroom, oSunShroom, oFumeShroom, oHypnoShroom, oScaredyShroom, oIceShroom, oDoomShroom],
 		StageCard_3: [oCherryBomb, oDoomShroom, oSunFlower, oRepeater, oFumeShroom, oGloomShroom, oLilyPad, oSquash, oThreepeater, oTangleKelp, oJalapeno, oSpikeweed, oTorchwood, oTallNut, oTwinSunflower],
-		StageCard_4: [oCherryBomb, oSunFlower, oRepeater, oFumeShroom, oSpikeweed, oGatlingPea_Pro, oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead],
+		StageCard_4: [oCherryBomb, oSunFlower, oRepeater, oFumeShroom, oSpikeweed,oSeaShroom, oPlantern, oCactus, oBlover, oSplitPea, oStarfruit, oPumpkinHead],
 		StageZCard_1: [oZombie, oPoleVaultingZombie, oConeheadZombie, oBucketheadZombie],
 		StageZCard_2: [oNewspaperZombie, oScreenDoorZombie, oFootballZombie, oDancingZombie],
 		StageZCard_3: [oDuckyTubeZombie1, oDuckyTubeZombie2, oDuckyTubeZombie3, oDolphinRiderZombie, oSnorkelZombie],
@@ -149,4 +149,5 @@
 	});
 
 })();
+
 
