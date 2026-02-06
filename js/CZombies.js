@@ -293,7 +293,7 @@ var CZombies = function(b, a) {
                         f = GetC(d),
                         h = oGd.$,
                         c;
-					(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking&&!g.JudgeAttackH1()&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					!g.JudgeAttackH1&&((c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking&&!g.JudgeAttackH1()&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif]))
                 },
                 JudgeLR: function(f, d, e, c, g) {
                     return e > 10 || e < 1 ? false : function() {
@@ -461,8 +461,6 @@ var CZombies = function(b, a) {
         height: 152,
         beAttackedPointL: 50,
         beAttackedPointR: 95,
-        Speed: 3.5,
-        OSpeed: 3.5,
         PicArr: (function() {
             var a = "images/Zombies/BackupDancer/";
             return ["images/Card/Zombies/BackupDancer.png", a + "0.gif", a + "BackupDancer.gif", a + "Attack.gif", a + "LostHead.gif", a + "LostHeadAttack.gif", a + "Head.gif" + $Random, a + "Die.gif" + $Random, a + "BoomDie.gif" + $Random, a + "Dancing.gif" + $Random, a + "LostHeadDancing.gif" + $Random, a + "Mound.gif" + $Random]
@@ -1029,6 +1027,10 @@ var CZombies = function(b, a) {
             var a = "images/Zombies/Zombie/";
             return ["images/Card/Zombies/Zombie.png", a + "0.gif", a + "Zombie.gif", a + "ZombieAttack.gif", a + "ZombieLostHead.gif", a + "ZombieLostHeadAttack.gif", a + "ZombieHead.gif" + $Random, a + "ZombieDie.gif" + $Random, a + "BoomDie.gif" + $Random, a + "1.gif"]
         })(),
+		jinyinAct:function(){
+			this.OSpeed=this.Speed=3.6;
+			this.tasktime=75;
+		},
         Produce: '韧性：<font color="#FF0000">低</font></p>这种僵尸喜爱脑髓，贪婪而不知足。脑髓，脑髓，脑髓，夜以继日地追求着。老而臭的脑髓？腐烂的脑髓？都没关系。僵尸需要它们。'
     }),
     oZombie2 = InheritO(oZombie, {
@@ -1125,7 +1127,7 @@ var CZombies = function(b, a) {
     oFootballZombie = InheritO(oConeheadZombie, {
         EName: "oFootballZombie",
         CName: "橄榄球僵尸",
-        OrnHP: 1400,
+        OrnHP: 1600,
         Lvl: 3,
         SunNum: 175,
         StandGif: 11,
@@ -1150,7 +1152,7 @@ var CZombies = function(b, a) {
     oPoleVaultingZombie = InheritO(OrnNoneZombies, {
         EName: "oPoleVaultingZombie",
         CName: "撑杆僵尸",
-        HP: 500,
+        HP: 600,
         width: 348,
         height: 218,
         OSpeed: 3.2,
@@ -2633,7 +2635,7 @@ jinyinAct: function(a){
         EName: "oBalloonZombie",
         CName: "气球僵尸",
         OrnHP: 20,
-        SunNum: 100,
+        SunNum: 150,
         width: 207,
         height: 197,
         beAttackedPointL: 30,
@@ -2653,6 +2655,9 @@ jinyinAct: function(a){
         CanPass: function(d, c) {
             return c
         },
+		jinyinAct:function(){
+			this.OrnHP=100
+		},
         AudioArr: ["ballooninflate", "balloon_pop"],
         BookHandPosition: "80% 80%",
         PicArr: (function() {
@@ -2690,6 +2695,7 @@ jinyinAct: function(a){
         },
         Drop: function() {
             var a = this;
+			if(a.OrnHP>0){return}
             PlayAudio("balloon_pop");
             a.EleBody.src = "images/Zombies/BalloonZombie/Drop.gif" + $Random + Math.random();
             a.ChkActs = function() {
