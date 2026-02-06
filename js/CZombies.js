@@ -1061,6 +1061,7 @@ var CZombies = function(b, a) {
         OSpeed: 4.4,
         Speed: 4.4,
 		HP:500,
+		jinyinAct:function(){},
         beAttackedPointR: 101,
         Produce: '旗帜僵尸标志着即将来袭的一大堆僵尸"流"。<p>韧性：<font color="#FF0000">低</font></p>毫无疑问，摇旗僵尸喜爱脑髓。但在私下里他也迷恋旗帜。也许是因为旗帜上也画有脑子吧，这很难说。'
     }),
@@ -1155,6 +1156,7 @@ var CZombies = function(b, a) {
         PlayNormalballAudio: function() {
             PlayAudio("plastichit")
         },
+		jinyinAct:function(){},
         PicArr: (function() {
             var a = "images/Zombies/FootballZombie/";
             return ["images/Card/Zombies/FootballZombie.png", a + "0.gif", a + "FootballZombie.gif", a + "Attack.gif", a + "LostHead.gif", a + "LostHeadAttack.gif", "images/Zombies/Zombie/ZombieHead.gif" + $Random, a + "Die.gif" + $Random, a + "BoomDie.gif" + $Random, a + "OrnLost.gif", a + "OrnLostAttack.gif", a + "1.gif"]
