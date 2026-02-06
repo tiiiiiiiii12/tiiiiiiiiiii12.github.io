@@ -6,6 +6,7 @@ var CZombies = function(b, a) {
                 NormalGif: 2,
                 CardGif: 0,
                 StaticGif: 1,
+			    jinyinnum:20,
                 StandGif: 2,
                 BookHandBack: 0,
                 AudioArr: [],
