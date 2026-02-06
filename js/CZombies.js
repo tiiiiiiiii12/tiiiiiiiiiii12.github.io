@@ -149,14 +149,14 @@ var CZombies = function(b, a) {
                         function(h, g) {
                             var i = $Z[h];
                             i && (i.FreeSetbodyTime = 0, SetBlock(g))
-                        },
+                        }，
                         [d, c]) : SetBlock(c)
                 },
                 Birth: function() {
                     var c = this;
                     $Z[c.id] = c;
                     oZ.add(c);
-                    c.BirthCallBack(c);
+                    c。BirthCallBack(c);
                 Math.random()*100<c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
                 },
                 getCrushed: function(c) {
@@ -174,7 +174,7 @@ var CZombies = function(b, a) {
                 },
                 PlayNormalballAudio: function() {
                     PlayAudio("splat" + Math.floor(1 + Math.random() * 3))
-                },
+				},
                 PlayFireballAudio: function() {
                     PlayAudio(["ignite", "ignite2"][Math.floor(Math.random() * 2)])
                 },
@@ -231,7 +231,7 @@ var CZombies = function(b, a) {
                                 function(j, i) {
                                     var k = $Z[j];
                                     k && k.FreeSlowTime == i && (k.FreeSlowTime = 0, k.Attack = 100, !k.FreeSetbodyTime && (k.Speed = k.OSpeed))
-                                },
+								},
                                 [g, h.FreeSlowTime = oSym.Now + 1500]))
                         },
                         [c, d.FreeFreezeTime = oSym.Now + 400, NewImg("icetrap_" + Math.random(), "images/Plants/IceShroom/icetrap.gif", d.getShadow(d), d.Ele)])
@@ -251,7 +251,7 @@ var CZombies = function(b, a) {
                     c.HP = 0;
                     delete $Z[c.id];
                     c.PZ && oP.MonPrgs()
-                },
+				},
                 DisappearDie: function() {
                     ClearChild(this.Ele);
                     this.HP = 0;
@@ -294,7 +294,7 @@ var CZombies = function(b, a) {
                         h = oGd.$,
 						a,
                         c;
-					((a=g.JudgeAttackH1())||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!a&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					(((a=g.JudgeAttackH1())&&a.beAttacked)||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!a&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
 				JudgeAttackH1: function() {
                     var e = this,
