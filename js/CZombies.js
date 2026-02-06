@@ -332,7 +332,7 @@ var CZombies = function(b, a) {
                         d = oZ.getHZ0(e.ZX, e.R),
                         f = e.id,
                         c;
-                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
+                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 &&(!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1))
 					return d
                 },
 			tasktime:100,
