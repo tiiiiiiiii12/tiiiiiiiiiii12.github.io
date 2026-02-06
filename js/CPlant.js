@@ -2588,7 +2588,7 @@ var CPlants = NewO({
                 return false
             }
         },
-        NormalAttack2: function() {
+        NormalAttack1: function() {
             var b = this,
                 c = "CB" + Math.random(),
                 a = b.id;
