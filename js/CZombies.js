@@ -1113,7 +1113,7 @@ var CZombies = function(b, a) {
 				var Z,
 					len=(Z=oZ.getArZ(a.ZX+20,a.ZX+200,a.R)).length;
 				while(len--){
-					Z[len]&&a.Ornaments&&Z[len].ChangeR(Z[len])
+					Z[len]&&(Z[len].EName!="oConeheadZombie")&&a.Ornaments&&Z[len].ChangeR(Z[len])
 				}
 			}
 		},
