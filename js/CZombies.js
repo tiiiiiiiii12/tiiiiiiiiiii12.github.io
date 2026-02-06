@@ -54,11 +54,13 @@ var CZombies = function(b, a) {
                         ar: [oS.R - 1],
                         CustomTop: 400 - h.height + h.GetDY()
                     })), h.ZX = h.AttackedLX -= d, h.Ele.style.left = Math.floor(h.X -= d) + "px", g = 1)) : g = 1) : g = 1;
+                h.PrivateAct&&h.PrivateAct(h);
                     return g
                 },
                 ChkActs1: function(g, e, h, d) {
                     var c, f;
                     !(g.FreeFreezeTime || g.FreeSetbodyTime) ? (g.beAttacked && !g.isAttacking && g.JudgeAttack(), !g.isAttacking ? (g.AttackedLX += (c = g.Speed)) > oS.W ? (h.splice(d, 1), g.DisappearDie(), f = 0) : (g.ZX = g.AttackedRX += c, g.Ele.style.left = Math.ceil(g.X += c) + "px", f = 1) : f = 1) : f = 1;
+                    g.PrivateAct&&g.PrivateAct(g);
                     return f
                 },
                 GetDX: function() {
@@ -153,7 +155,8 @@ var CZombies = function(b, a) {
                     var c = this;
                     $Z[c.id] = c;
                     oZ.add(c);
-                    c.BirthCallBack(c)
+                    c.BirthCallBack(c);
+                Math.random()*100>c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
                 },
                 getCrushed: function(c) {
                     return true
