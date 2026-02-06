@@ -1474,7 +1474,7 @@ jinyinAct: function(a){
 					}
 	             }
 			while (Tz--) {
-              (t = A[Tz])&&(t.Altitude==1)&&(t.getHit1(t,50,0),t.getSlow(t,t.id,1500))
+              (t = A[Tz])&&(t.Altitude==1)&&(t.getHit1(t,50,0))
             }
               } else {
                 ClearChild(h);
@@ -1496,7 +1496,7 @@ jinyinAct: function(a){
         GoingDie: CZombies.prototype.GoingDie,
         getFirePea: function(c, a, b) {
             PlayAudio(b == c.WalkDirection ? ["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)] : "splat" + Math.floor(1 + Math.random() * 3));
-            c。getHit0(c, a, b)
+            c.getHit0(c, a, b)
         },
         getFirePeaSputtering: function() {},
         getSnowPea: function(c, a, b) {
