@@ -1428,13 +1428,66 @@ var CZombies = function(b, a) {
         StandGif: 13,
         width: 166,
         height: 144,
+        jinyinnum:15,
         beAttackedPointL: 60,
         beAttackedPointR: 116,
+        check:1,
+        LostPaperSpeed:1.6,
         PicArr: (function() {
             var a = "images/Zombies/ScreenDoorZombie/",
                 b = "images/Zombies/Zombie/";
             return ["images/Card/Zombies/ScreenDoorZombie.png", a + "0.gif", a + "HeadWalk1.gif", a + "HeadAttack1.gif", a + "LostHeadWalk1.gif", a + "LostHeadAttack1.gif", b + "Zombie2.gif", b + "ZombieAttack.gif", b + "ZombieLostHead.gif", b + "ZombieLostHeadAttack.gif", b + "ZombieHead.gif" + $Random, b + "ZombieDie.gif" + $Random, b + "BoomDie.gif" + $Random, a + "1.gif"]
         })(),
+jinyinAct: function(a){
+		var z = $(a.id);
+		z.FumeDoor = "Fume" + Math.random();
+        var Sh = NewImg(z.FumeDoor,"images/Plants/FumeShroom/FumeShroom.gif","position:absolute;width:100px;height:88px;transform:"+(a.PZ?"rotateY(180deg);":"rotateY(0deg);")+"left:20px;top:50px;",0);
+        z.appendChild(Sh);//寒冰头与大喷菇
+	NewEle(a.id + "_Bullet", 
+	"div", "position:absolute;transform:"+(a.PZ?"rotateY(180deg);":"rotateY(0deg);")+"visibility:hidden;width:343px;height:62px;left:"+(a.PZ?"-250":"40")+"px;top:70px;background:url(images/Plants/FumeShroom/FumeShroomBullet.gif);z-index:" + (a.zIndex + 1),0,$(a.id));
+	oSym.addTask(1, function(a,h,z) {
+		if (a.Ornaments&&$Z[a.id]) {
+		let A= oZ["getAr"+(a.PZ?"HZ":"Z")](a.PZ?a.ZX-200:a.ZX,a.PZ?a.ZX:a.ZX+200, a.R),
+        Tz= A.length;
+	for (let i = GetC(a.ZX) - 2; i <= GetC(a.ZX); i++) {
+            for (let l = 0; l < 4; l++) {
+              var m = oGd.$[a.R + "_" + i + "_" + l];
+            Tz||(m!==undefined&&a.PZ)?(
+					a.Speed = a.OSpeed = 0,
+				EditImg($(z.FumeDoor),0,"images/Plants/FumeShroom/FumeShroomAttack.gif",{},0),
+                  PlayAudio("fume"),
+                  SetVisible($(h)),
+			oSym.addTask(50,function(a,z){
+			a&&a.Ornaments&&EditImg($(z.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{},0)
+			},[a,z]),
+                  ImgSpriter(h, a.id, [
+                      ["0 0", 4, 1],
+                      ["0 -62px", 4, 2],
+                      ["0 -124px", 4, -1]
+                    ], 0,
+                    function(i, j) {
+                      SetHidden($(i))
+                    }),
+                  a.PZ&&m && (m.getHurt(a, 3,50))
+						):(a.Speed = a.OSpeed =a.LostPaperSpeed);
+					}
+	             }
+			while (Tz--) {
+              (t = A[Tz])&&(t.Altitude==1)&&(t.getHit1(t,50,0),t.getSlow(t,t.id,1500))
+            }
+              } else {
+                ClearChild(h);
+		        ClearChild($(z.FumeDoor));
+                a.Speed = a.OSpeed =a.LostPaperSpeed;
+              }
+        a &&oSym.addTask(100, arguments.callee, [a,a.id + "_Bullet",z])
+      }, [a,a.id + "_Bullet",z]);//大喷技能
+	var P=$(a.id);
+	!(a.PZ==a.check)&&(EditEle($(a.id + "_Bullet"), 0,
+        {transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",left:(a.PZ?"-250":"40")+"px"},$(a.id),0),
+	a.Ornaments&&EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)"},0),
+	a.check=0);
+       },   
         PlayNormalballAudio: function() {
             PlayAudio("splat" + Math.floor(1 + Math.random() * 3))
         },
@@ -1442,7 +1495,7 @@ var CZombies = function(b, a) {
         GoingDie: CZombies.prototype.GoingDie,
         getFirePea: function(c, a, b) {
             PlayAudio(b == c.WalkDirection ? ["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)] : "splat" + Math.floor(1 + Math.random() * 3));
-            c.getHit0(c, a, b)
+            c。getHit0(c, a, b)
         },
         getFirePeaSputtering: function() {},
         getSnowPea: function(c, a, b) {
