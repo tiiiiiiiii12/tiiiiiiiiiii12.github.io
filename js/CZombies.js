@@ -293,7 +293,7 @@ var CZombies = function(b, a) {
                         f = GetC(d),
                         h = oGd.$,
                         c;
-					g.JudgeAttackH1()||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					(g.JudgeAttackH1()||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
 				JudgeAttackH1: function() {
                     var e = this,
@@ -337,7 +337,7 @@ var CZombies = function(b, a) {
                 },
 			tasktime:100,
                 AttackZombie: function(d, c) {
-                    oSym.addTask(this.tasktime*0.1,
+                    oSym.addTask($Z[d].tasktime*0.1,
                         function(f, e) {
                             var h = $Z[f],
                                 g;
