@@ -52,14 +52,14 @@ var CZombies = function(b, a) {
                     var d, c, g;
                     !(h.FreeFreezeTime || h.FreeSetbodyTime) ? (h.beAttacked && !h.isAttacking && h.JudgeAttack(), !h.isAttacking ? ((c = h.AttackedRX -= (d = h.Speed)) < -50 ? (j.splice(e, 1), h.DisappearDie(), g = 0) : (c < 100 && !h.PointZombie && (h.PointZombie = 1, !oS.CardKind && (StopMusic(), PlayAudio("losemusic", false)), h.ChangeR({
                         R: f,
-                        ar: [oS.R - 1],
+						ar: [oS.R - 1],
                         CustomTop: 400 - h.height + h.GetDY()
                     })), h.ZX = h.AttackedLX -= d, h.Ele.style.left = Math.floor(h.X -= d) + "px", g = 1)) : g = 1) : g = 1;
                 h.PrivateAct&&h.PrivateAct(h);
                     return g
                 },
                 ChkActs1: function(g, e, h, d) {
-                    var c, f;
+                    var c,f;
                     !(g.FreeFreezeTime || g.FreeSetbodyTime) ? (g.beAttacked && !g.isAttacking && g.JudgeAttack(), !g.isAttacking ? (g.AttackedLX += (c = g.Speed)) > oS.W ? (h.splice(d, 1), g.DisappearDie(), f = 0) : (g.ZX = g.AttackedRX += c, g.Ele.style.left = Math.ceil(g.X += c) + "px", f = 1) : f = 1) : f = 1;
                     g.PrivateAct&&g.PrivateAct(g);
                     return f
@@ -105,7 +105,7 @@ var CZombies = function(b, a) {
                     }
                     i.ArR = f;
                     i.ArHTML = ['<div id="', '" style="position:absolute;display:', ";left:", "px;top:", "px;z-index:", '"><img src="' + ShadowPNG + '" style="' + i.getShadow(i) + '"><img style="position:absolute;clip:rect(0,auto,', ",0);top:", 'px" src="', '"></div>']
-                },
+				},
                 getHTML: function(d, g, i, h, f, k, j, c) {
                     var e = this.ArHTML;
                     return e[0] + d + e[1] + f + e[2] + g + e[3] + i + e[4] + h + e[5] + k + e[6] + j + e[7] + c + e[8]
@@ -157,7 +157,7 @@ var CZombies = function(b, a) {
                     $Z[c.id] = c;
                     oZ.add(c);
                     c.BirthCallBack(c);
-                Math.random()*100>c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
+                Math.random()*100<c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
                 },
                 getCrushed: function(c) {
                     return true
