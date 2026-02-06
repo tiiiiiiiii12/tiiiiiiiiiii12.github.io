@@ -319,36 +319,27 @@ var CZombies = function(b, a) {
                         }
                     }()
                 },
-                JudgeAttackH1: function() {
-                    var e = this,
-                        d = oZ.getZ0(e.ZX, e.R),
-                        c = e.id;
-                    d && d.beAttacked && d.AttackedLX < 900 && d.Altitude == 1 && (e.AttackZombie(d.id), !d.isAttacking && d.AttackZombie(c))
-                },
                 JudgeAttackH: function() {
                     var e = this,
                         d = oZ.getZ0(e.ZX, e.R),
                         f = e.id,
                         c;
-                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id), !d.isAttacking && d.AttackZombie2(d, c, f)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
+                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
                 },
+			    JudgeAttackH1: function() {
+                    var e = this,
+                        d = oZ.getHZ0(e.ZX, e.R),
+                        f = e.id,
+                        c;
+                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
+                },
+			tasktime:100,
                 AttackZombie: function(d, c) {
-                    oSym.addTask(10,
+                    oSym.addTask(this.tasktime*0.1,
                         function(f, e) {
                             var h = $Z[f],
                                 g;
                             h && h.beAttacked && !h.FreeFreezeTime && !h.FreeSetbodyTime && ((g = $Z[e]) && g.getHit0(g, 10, 0), h.JudgeAttackH())
-                        },
-                        [d, c])
-                },
-                AttackZombie2: function(e, d, c) {
-                    e.isAttacking = 1;
-                    e.EleBody.src = e.PicArr[e.AttackGif];
-                    oSym.addTask(10,
-                        function(g, f) {
-                            var i = $Z[g],
-                                h;
-                            i && i.beAttacked && !i.FreeFreezeTime && !i.FreeSetbodyTime && ((h = $Z[f]) ? (h.getHit0(h, 10, 0), oSym.addTask(10, arguments.callee, [g, f])) : (i.isAttacking = 0, i.EleBody.src = i.PicArr[i.NormalGif]))
                         },
                         [d, c])
                 },
@@ -359,7 +350,7 @@ var CZombies = function(b, a) {
                             $Z[e] && PlayAudio(["chomp", "chompsoft"][Math.floor(Math.random() * 2)])
                         },
                         [d]);
-                    oSym.addTask(100,
+                    oSym.addTask(this.tasktime,
                         function(f, e) {
                             var h = $Z[f],
                                 g;
@@ -1277,14 +1268,15 @@ var CZombies = function(b, a) {
         EName: "oNewspaperZombie",
         CName: "读报僵尸",
         OrnHP: 150,
-        Lvl: 2,
+        Lvl: 3,
+		HP:500,
         LostPaperGif: 13,
         StandGif: 14,
         width: 216,
         height: 164,
         beAttackedPointL: 60,
         beAttackedPointR: 130,
-        LostPaperSpeed: 4.8,
+        LostPaperSpeed: 6.4,
         PicArr: (function() {
             var a = "images/Zombies/NewspaperZombie/";
             return ["images/Card/Zombies/NewspaperZombie.png", a + "0.gif", a + "HeadWalk1.gif", a + "HeadAttack1.gif", a + "LostHeadWalk1.gif", a + "LostHeadAttack1.gif", a + "HeadWalk0.gif", a + "HeadAttack0.gif", a + "LostHeadWalk0.gif", a + "LostHeadAttack0.gif", a + "Head.gif" + $Random, a + "Die.gif" + $Random, a + "BoomDie.gif" + $Random, a + "LostNewspaper.gif", a + "1.gif"]
@@ -1486,7 +1478,10 @@ jinyinAct: function(a){
 	var P=$(a.id);
 	!(a.PZ==a.check)&&(EditEle($(a.id + "_Bullet"), 0,
         {transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",left:(a.PZ?"-250":"40")+"px"},$(a.id),0),
-	a.Ornaments&&EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)"},0),
+	a.Ornaments&&EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{
+		transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",
+		left:a.PZ?"20px":"40px";
+	},0),
 	a.check=0);
        },   
         PlayNormalballAudio: function() {
