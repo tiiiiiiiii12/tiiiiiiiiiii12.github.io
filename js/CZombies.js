@@ -149,14 +149,14 @@ var CZombies = function(b, a) {
                         function(h, g) {
                             var i = $Z[h];
                             i && (i.FreeSetbodyTime = 0, SetBlock(g))
-                        }，
+						},
                         [d, c]) : SetBlock(c)
                 },
                 Birth: function() {
                     var c = this;
                     $Z[c.id] = c;
                     oZ.add(c);
-                    c。BirthCallBack(c);
+                    c.BirthCallBack(c);
                 Math.random()*100<c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
                 },
                 getCrushed: function(c) {
