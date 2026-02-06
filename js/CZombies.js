@@ -1401,6 +1401,7 @@ var CZombies = function(b, a) {
                             i = k.OSpeed = k.LostPaperSpeed;
                         k.ChkActs = j.ChkActs;
                         k.ChkActs1 = j.ChkActs1;
+						k.tasktime=25;
                         k.Speed && (k.Speed = !k.FreeSlowTime ? i : 0.5 * i);
                         if (!k.beAttacked) {
                             return
