@@ -2489,7 +2489,7 @@ var CPlants = NewO({
           c && c.NormalAttack1();
           --b && oSym.addTask(15, arguments.callee, [d, b])
         },
-        [this.id, Math.round(Math.random() * 2 + 0)])
+        [this.id, Math.round(Math.random() * 1 + 0)])
     },
         CheckLoop2: function(b, c) {
             var a = this.id;
