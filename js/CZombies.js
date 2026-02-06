@@ -1109,7 +1109,7 @@ var CZombies = function(b, a) {
 			a.NormalGif=12;
 			a.AttackGif=13;
 			a.OrnHP=600;
-			a.Ele.src=a.PicArr[a.NormalGif];
+			a.EleBody.src=a.PicArr[a.NormalGif];
 			a.PrivateAct=function(a){
 				var Z,
 					len=(Z=oZ.getArZ(a.ZX+20,a.ZX+100,a.R)).length;
