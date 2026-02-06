@@ -1477,6 +1477,7 @@ jinyinAct: function(a){
               }
         a &&oSym.addTask(100, arguments.callee, [a,a.id + "_Bullet",z])
       }, [a,a.id + "_Bullet",z]);//大喷技能
+	a.PrivateAct=function(a){
 	var P=$(a.id);
 	!(a.PZ==a.check)&&(a.Ornaments&&(EditEle($(a.id + "_Bullet"), 0,
         {transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",left:(a.PZ?"-250":"40")+"px"},$(a.id),0),
@@ -1485,6 +1486,7 @@ jinyinAct: function(a){
 		left:a.PZ?"20px":"40px"
 	},0)),
 	a.check=a.PZ);
+	}
        },   
         PlayNormalballAudio: function() {
             PlayAudio("splat" + Math.floor(1 + Math.random() * 3))
@@ -1494,7 +1496,7 @@ jinyinAct: function(a){
         getFirePea: function(c, a, b) {
             PlayAudio(b == c.WalkDirection ? ["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)] : "splat" + Math.floor(1 + Math.random() * 3));
             c.getHit0(c, a, b)
-        },
+        }，
         getFirePeaSputtering: function() {},
         getSnowPea: function(c, a, b) {
             PlayAudio(["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)]);
