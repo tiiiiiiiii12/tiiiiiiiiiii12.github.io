@@ -1098,12 +1098,24 @@ var CZombies = function(b, a) {
         PicArr: (function() {
             var b = "images/Zombies/ConeheadZombie/",
                 a = "images/Zombies/Zombie/";
-            return ["images/Card/Zombies/ConeheadZombie.png", b + "0.gif", b + "ConeheadZombie.gif", b + "ConeheadZombieAttack.gif", a + "ZombieLostHead.gif", a + "ZombieLostHeadAttack.gif", a + "ZombieHead.gif" + $Random, a + "ZombieDie.gif" + $Random, a + "BoomDie.gif" + $Random, a + "Zombie.gif", a + "ZombieAttack.gif", b + "1.gif"]
+            return ["images/Card/Zombies/ConeheadZombie.png", b + "0.gif", b + "ConeheadZombie.gif", b + "ConeheadZombieAttack.gif", a + "ZombieLostHead.gif", a + "ZombieLostHeadAttack.gif", a + "ZombieHead.gif" + $Random, a + "ZombieDie.gif" + $Random, a + "BoomDie.gif" + $Random, a + "Zombie.gif", a + "ZombieAttack.gif", b + "1.gif", b + "jinyinWalk.gif", b + "jinyinAttack.gif"]
         })(),
         AudioArr: ["plastichit"],
         PlayNormalballAudio: function() {
             PlayAudio("plastichit")
         },
+		jinyinAct:function(a){
+			a.NormalGif=12;
+			a.AttackGif=13;
+			a.OrnHP=600;
+			a.PrivateAct=function(a){
+				var Z,
+					len=(Z=oZ.getArZ(a.ZX+20,a.ZX+200,a.R)).length;
+				while(len--){
+					Z[len]&&a.Ornaments&&Z[len].ChangeR(Z[len])
+				}
+			}
+		},
         Produce: '他的路障头盔，使他两倍坚韧于普通僵尸。<p>韧性：<font color="#FF0000">中</font></p>和其他僵尸一样，路障头僵尸盲目地向前。但某些事物却使他停下脚步，捡起一个交通路障，并固实在自己的脑袋上。是的，他很喜欢参加聚会。'
     }),
     oBucketheadZombie = InheritO(oConeheadZombie, {
@@ -1115,6 +1127,7 @@ var CZombies = function(b, a) {
         PlayNormalballAudio: function() {
             PlayAudio(["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)])
         },
+		jinyinAct:function(){},
         Produce: '他的铁桶头盔，能极大程度的承受伤害。<p>韧性：<font color="#FF0000">高</font><br>弱点：<font color="#FF0000">磁力菇</font></p>铁桶头僵尸经常戴着水桶，在冷漠的世界里显得独一无二。但事实上，他只是忘记了，那铁桶还在他头上而已。'
     }, {
         PicArr: {
@@ -1407,7 +1420,7 @@ var CZombies = function(b, a) {
                         }
                         var j = CZombies.prototype,
                             i = k.OSpeed = k.LostPaperSpeed;
-                        k.ChkActs = j.ChkActs;
+                        k.ChkActs =!k.WalkDirection?j.ChkActs:j.ChkActs1;
                         k.ChkActs1 = j.ChkActs1;
 						k.tasktime=25;
                         k.Speed && (k.Speed = !k.FreeSlowTime ? i : 0.5 * i);
