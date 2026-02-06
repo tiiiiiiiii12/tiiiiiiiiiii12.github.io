@@ -1005,7 +1005,7 @@ var CZombies = function(b, a) {
                                             [A, z]))
                                     },
                                     [t, u, w, o]);
-                                oSym.addTask(200,
+                                oSym。addTask(200,
                                     function(y, i) {
                                         var z = $Z[y],
                                             j;
@@ -1030,6 +1030,7 @@ var CZombies = function(b, a) {
 		jinyinAct:function(){
 			this.OSpeed=this.Speed=3.6;
 			this.tasktime=75;
+			$(this.id).style.filter = "sepia(0.6) hue-rotate(150deg) saturate(1.5)";
 		},
         Produce: '韧性：<font color="#FF0000">低</font></p>这种僵尸喜爱脑髓，贪婪而不知足。脑髓，脑髓，脑髓，夜以继日地追求着。老而臭的脑髓？腐烂的脑髓？都没关系。僵尸需要它们。'
     }),
