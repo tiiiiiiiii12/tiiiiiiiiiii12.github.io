@@ -60,6 +60,10 @@ var CPlants = NewO({
                 },
                 n);
             oGd.add(e, h + "_" + a + "_" + e.PKind);
+            Math.random()*100<e.jinyinnum&&(
+                    e.jinyin=true,
+                    e.jinyinAct&&e.jinyinAct(e)   
+                );
             e.PrivateBirth(e, n)
         },
         getShadow: function(a) {
@@ -1573,7 +1577,7 @@ var CPlants = NewO({
         getHurt: function(e, b, a) {
             var c = this,
                 d = $(c.id).childNodes[1];
-            !(b % 3) ? (c.HP -= 20) < 1 ? c.Die() : (e.ChangeR({
+            !(b%3) ? (c.HP -= 20) < 1 ? c.Die() : (b!=3&&e.ChangeR({
                 R: c.R
             }), c.HP < 134 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/Garlic/Garlic_body3.gif") : c.HP < 267 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/Garlic/Garlic_body2.gif")): c.Die()
         }
