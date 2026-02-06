@@ -293,7 +293,7 @@ var CZombies = function(b, a) {
                         f = GetC(d),
                         h = oGd.$,
                         c;
-                    (c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking && (g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					!g.JudgeAttackH1()&&(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking && (g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
                 JudgeLR: function(f, d, e, c, g) {
                     return e > 10 || e < 1 ? false : function() {
@@ -325,6 +325,7 @@ var CZombies = function(b, a) {
                         f = e.id,
                         c;
                     d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
+					return d
                 },
 			    JudgeAttackH1: function() {
                     var e = this,
@@ -332,6 +333,7 @@ var CZombies = function(b, a) {
                         f = e.id,
                         c;
                     d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
+					return d
                 },
 			tasktime:100,
                 AttackZombie: function(d, c) {
@@ -1269,20 +1271,20 @@ var CZombies = function(b, a) {
         CName: "读报僵尸",
         OrnHP: 150,
         Lvl: 3,
-		HP:500,
+		HP:400,
         LostPaperGif: 13,
         StandGif: 14,
         width: 216,
         height: 164,
         beAttackedPointL: 60,
         beAttackedPointR: 130,
-        LostPaperSpeed: 6.4,
+        LostPaperSpeed: 4.8,
         PicArr: (function() {
             var a = "images/Zombies/NewspaperZombie/";
             return ["images/Card/Zombies/NewspaperZombie.png", a + "0.gif", a + "HeadWalk1.gif", a + "HeadAttack1.gif", a + "LostHeadWalk1.gif", a + "LostHeadAttack1.gif", a + "HeadWalk0.gif", a + "HeadAttack0.gif", a + "LostHeadWalk0.gif", a + "LostHeadAttack0.gif", a + "Head.gif" + $Random, a + "Die.gif" + $Random, a + "BoomDie.gif" + $Random, a + "LostNewspaper.gif", a + "1.gif"]
         })(),
         AudioArr: ["newspaper_rarrgh2"],
-        Produce: '他的报纸只能提供有限的防御。<p>韧性：<font color="#FF0000">低</font><br>报纸韧性：<font color="#FF0000">低</font><br>速度：正常，而后快(失去报纸后)</p>读报僵尸，他正痴迷于完成他的数独难题。难怪他这么反常。',
+        Produce: '他的报纸只能提供有限的防御。<p>韧性：<font color="#FF0000">低</font><br>报纸韧性：<font color="#FF0000">低</font><br>速度：正常，而后快(失去报纸后)</p>读报僵尸，他正痴迷于完成他的数独难题。难怪他这么反常。'，
         getShadow: function(a) {
             return "left:75px;top:" + (a.height - 25) + "px"
         },
@@ -1496,7 +1498,7 @@ jinyinAct: function(a){
         getFirePea: function(c, a, b) {
             PlayAudio(b == c.WalkDirection ? ["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)] : "splat" + Math.floor(1 + Math.random() * 3));
             c.getHit0(c, a, b)
-        }，
+		},
         getFirePeaSputtering: function() {},
         getSnowPea: function(c, a, b) {
             PlayAudio(["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)]);
@@ -1803,7 +1805,7 @@ jinyinAct: function(a){
                 b = oZ.getZ0(c.ZX, c.R),
                 d = c.id,
                 a;
-            b && b.beAttacked && b.AttackedLX < 900 && b.Altitude < 2 ? (!c.isAttacking ? (c.isAttacking = 1, c.EleBody.src = c.PicArr[9] + Math.random(), a = b.id, !b.isAttacking && b.AttackZombie2(b, a, d), oSym.addTask(50,
+            b && b.beAttacked && b.AttackedLX < 900 && b.Altitude < 2 ? (!c.isAttacking ? (c.isAttacking = 1, c.EleBody.src = c.PicArr[9] + Math.random(),b=a.id,oSym.addTask(50,
                 function(g, h, f, e) {
                     $Z[h] && g.beAttacked && ($Z[e] && f.beAttacked ? (g.EleBody.src = g.PicArr[g.AttackGif], g.Altitude = 1, g.AttackZombie(h, e)) : g.JudgeAttackH())
                 },
@@ -1813,7 +1815,7 @@ jinyinAct: function(a){
                 },
                 [d, c]))
         },
-        AttackZombie2: function(c, b, a) {
+        AttackZombie: function(c, b, a) {
             c.isAttacking = 1;
             c.EleBody.src = c.PicArr[9] + Math.random();
             oSym.addTask(50,
