@@ -684,7 +684,7 @@ var CPlants = NewO({
                     c && c.NormalAttack1();
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
-                [this.id, 3])
+                [this.id, 5])
         }
     }),
     oSplitPea = InheritO(oPeashooter, {
@@ -1746,7 +1746,7 @@ var CPlants = NewO({
         NormalAttack: function() {
             PlayAudio("fume");
             var f = this,
-                d = oZ.getArZ(f.AttackedLX, Math.min(f.AttackedRX + 330, oS.W), f.R),
+                d = oZ.getArZ(f.AttackedLX, Math.min(f.AttackedRX + 550, oS.W), f.R),
                 e = d.length,
                 g,
                 c = f.id,
@@ -2451,7 +2451,7 @@ var CPlants = NewO({
         CName: "仙人掌",
         width: 122,
         height: 157,
-        SunNum: 125,
+        SunNum: 150,
         beAttackedPointL: 10,
         beAttackedPointR: 80,
         AudioArr: ["plantgrow"],
@@ -2460,7 +2460,7 @@ var CPlants = NewO({
             return ["images/Card/Plants/Cactus.png", "images/Plants/Cactus/0.gif", "images/Plants/Cactus/Cactus.gif", "images/Plants/Cactus/Cactus2.gif", "images/Plants/Cactus/Attack.gif", "images/Plants/Cactus/Attack2.gif", "images/Plants/Cactus/Elongation.gif", "images/Plants/Cactus/Shorten.gif", "images/Plants/Cactus/Projectile" + ($User.Browser.IE6 ? 8 : 32) + ".png"]
         })(),
         Tooltip: "能发射刺穿气球的子弹",
-        Produce: '仙人掌发射的穿刺弹可以用来打击地面和空中目标<p>伤害：<font color="#FF0000">中等</font><br>范围：<font color="#FF0000">地面和空中</font></p>确实，仙人掌非常“刺儿”，但是她的刺下，隐藏藏着颗温柔的心，充满着爱和善良。她只是想拥抱别人，和被别人拥抱。大多数人都做不到这点，但是仙人掌她并不介意。她盯着一只铠甲鼠好一阵子了，这次好像真的可以抱抱了。',
+        Produce: '仙人掌发射的穿刺弹可以用来打击地面和空中目标，有概率连发<p>伤害：<font color="#FF0000">中等</font><br>范围：<font color="#FF0000">地面和空中</font></p>确实，仙人掌非常“刺儿”，但是她的刺下，隐藏藏着颗温柔的心，充满着爱和善良。她只是想拥抱别人，和被别人拥抱。大多数人都做不到这点，但是仙人掌她并不介意。她盯着一只铠甲鼠好一阵子了，这次好像真的可以抱抱了。',
         getShadow: function(a) {
             return "left:3px;top:132px"
         },
@@ -2481,6 +2481,16 @@ var CPlants = NewO({
                 },
                 [a, b, c])
         },
+   NormalAttack: function(a) {
+      this.NormalAttack1();
+      oSym.addTask(10,
+        function(d, b) {
+          var c = $P[d];
+          c && c.NormalAttack1();
+          --b && oSym.addTask(15, arguments.callee, [d, b])
+        },
+        [this.id, Math.round(Math.random() * 2 + 0)])
+    },
         CheckLoop2: function(b, c) {
             var a = this.id;
             this.NormalAttack(b);
@@ -2578,7 +2588,7 @@ var CPlants = NewO({
                 return false
             }
         },
-        NormalAttack: function() {
+        NormalAttack2: function() {
             var b = this,
                 c = "CB" + Math.random(),
                 a = b.id;
