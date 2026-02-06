@@ -16,6 +16,7 @@ var CPlants = NewO({
         canTrigger: 1,
         Stature: 0,
         Sleep: 0,
+        AttTime:0,
         CanGrow: function(c, b, e) {
             var a = b + "_" + e,
                 d = oS.ArP;
@@ -101,7 +102,7 @@ var CPlants = NewO({
         CheckLoop: function(b, c) {
             var a = this.id;
             this.NormalAttack(b);
-            oSym.addTask(140,
+            oSym.addTask(140+this.AttTime,
                 function(e, f, h) {
                     var g;
                     (g = $P[e]) && g.AttackCheck1(f, h)
@@ -1740,7 +1741,7 @@ var CPlants = NewO({
         },
         getTriggerRange: function(a, b, c) {
             return [
-                [b, Math.min(c + 330, oS.W), 0]
+                [b, Math.min(c + 550, oS.W), 0]
             ]
         },
         NormalAttack: function() {
@@ -1962,7 +1963,7 @@ var CPlants = NewO({
         width: 57,
         height: 81,
         beAttackedPointR: 37,
-        SunNum: 25,
+        SunNum: 125,
         Cry: 0,
         ArZ: [],
         Attacking: 0,
@@ -2021,7 +2022,8 @@ var CPlants = NewO({
                 function(g, e) {
                     var f = $(g);
                     f && SetVisible(f);
-                    oSym.addTask(130,
+                    c.AttTime+=3;
+                    oSym.addTask(130+Math.max(c.AttTime,-80),
                         function(h) {
                             var i = $P[h];
                             i && (i.Attacking = 0)
@@ -2055,7 +2057,7 @@ var CPlants = NewO({
         height: 78,
         beAttackedPointL: 10,
         beAttackedPointR: 61,
-        SunNum: 75,
+        SunNum: 150,
         coolTime: 30,
         PicArr: ["images/Card/Plants/HypnoShroom.png", "images/Plants/HypnoShroom/0.gif", "images/Plants/HypnoShroom/HypnoShroom.gif", "images/Plants/HypnoShroom/HypnoShroomSleep.gif"],
         Tooltip: "让一只僵尸为你作战",
@@ -2069,7 +2071,7 @@ var CPlants = NewO({
                     break;
                 case 0:
                     !c.Sleep && d.bedevil(d);
-                    c.Die();
+                    (c.HP -= 100) < 1 && c.Die();
                     break;
                 default:
                     c.Die()
@@ -2482,12 +2484,11 @@ var CPlants = NewO({
                 [a, b, c])
         },
    NormalAttack: function(a) {
-      this.NormalAttack1();
       oSym.addTask(10,
         function(d, b) {
           var c = $P[d];
           c && c.NormalAttack1();
-          --b>0&& oSym.addTask(15, arguments.callee, [d, b])
+          --b&& oSym.addTask(15, arguments.callee, [d, b])
         },
         [this.id, Math.round(Math.random() * 1 + 1)])
     },
