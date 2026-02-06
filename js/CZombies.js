@@ -220,10 +220,10 @@ var CZombies = function(b, a) {
                         },
                         [f, d])
                 },
-                getFreeze: function(d, c) {
+                getFreeze: function(d, c,a) {
                     d.beAttacked && d.getHit0(d, 20, 0);
                     d.Speed = 0;
-                    oSym.addTask(400,
+                    oSym.addTask(a||400,
                         function(g, f, e) {
                             ClearChild(e);
                             var h = $Z[g];
@@ -293,7 +293,7 @@ var CZombies = function(b, a) {
                         f = GetC(d),
                         h = oGd.$,
                         c;
-					!g.JudgeAttackH1()&&(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking && (g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h)) ? (!g.isAttacking&&!g.JudgeAttackH1()&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]), g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
                 JudgeLR: function(f, d, e, c, g) {
                     return e > 10 || e < 1 ? false : function() {
@@ -1054,8 +1054,9 @@ var CZombies = function(b, a) {
         })(),
         EName: "oFlagZombie",
         CName: "旗帜僵尸",
-        OSpeed: 2.2,
-        Speed: 2.2,
+        OSpeed: 4.4,
+        Speed: 4.4,
+		HP:500,
         beAttackedPointR: 101,
         Produce: '旗帜僵尸标志着即将来袭的一大堆僵尸"流"。<p>韧性：<font color="#FF0000">低</font></p>毫无疑问，摇旗僵尸喜爱脑髓。但在私下里他也迷恋旗帜。也许是因为旗帜上也画有脑子吧，这很难说。'
     }),
@@ -2637,8 +2638,8 @@ jinyinAct: function(a){
         height: 197,
         beAttackedPointL: 30,
         beAttackedPointR: 85,
-        OSpeed: 3.2,
-        Speed: 3.2,
+        OSpeed: 4,
+        Speed: 4,
         Altitude: 3,
         OrnLostNormalGif: 9,
         OrnLostAttackGif: 3,
