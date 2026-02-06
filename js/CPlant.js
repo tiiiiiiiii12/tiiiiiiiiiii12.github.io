@@ -8,6 +8,7 @@ var CPlants = NewO({
         NormalGif: 2,
         BookHandBack: 0,
         canEat: 1,
+        jinyinnum:20,
         zIndex: 0,
         AudioArr: [],
         coolTime: 7.5,
@@ -846,7 +847,17 @@ var CPlants = NewO({
                             [e.C, e.R]));
                         break;
                     case 3:
-                        (e.HP -= b) < 1 && e.Die();
+                        
+                        var d = (e.HP -= b);
+                        !(d % 100) && (AppearSun(Math.floor(GetX(e.C) - 40 + Math.random() * 41), GetY(e.R), 25, 0), oSym.addTask(50,
+                            function(h, g) {
+                                AppearSun(Math.floor(GetX(h) - 40 + Math.random() * 41), GetY(g), 25, 0)
+                            },
+                            [e.C, e.R]), d < 1 ? e.Die() : oSym.addTask(50,
+                            function(h, g) {
+                                AppearSun(Math.floor(GetX(h) - 40 + Math.random() * 41), GetY(g), 25, 0)
+                            },
+                            [e.C, e.R]));
                         break;
                     default: // 如果是非自然原因死亡，直接把剩余价值压榨出来
                         if (e.HP > 0) AppearSun(Math.floor(GetX(e.C) - 40 + Math.random() * 41), GetY(e.R), Math.floor(e.HP / 1.5 / 25) * 25, 0);
