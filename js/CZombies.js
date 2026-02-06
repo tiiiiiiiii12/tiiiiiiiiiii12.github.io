@@ -292,9 +292,9 @@ var CZombies = function(b, a) {
                         e = g.R + "_",
                         f = GetC(d),
                         h = oGd.$,
-						a
+						a,
                         c;
-					(a=g.JudgeAttackH1()||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!a&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					((a=g.JudgeAttackH1())||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!a&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
 				JudgeAttackH1: function() {
                     var e = this,
