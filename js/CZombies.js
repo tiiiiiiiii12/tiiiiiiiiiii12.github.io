@@ -329,10 +329,10 @@ var CZombies = function(b, a) {
                 },
 			    JudgeAttackH1: function() {
                     var e = this,
-                        d = oZ.getHZ0(e.ZX, e.R),
+                        d = oZ.getHZ1(e.ZX, e.R),
                         f = e.id,
                         c;
-                    d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 &&(!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1))
+                    d && d.beAttacked && d.AttackedRX > 100 && d.Altitude == 1 &&(!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1))
 					return d
                 },
 			tasktime:100,
@@ -341,7 +341,7 @@ var CZombies = function(b, a) {
                         function(f, e) {
                             var h = $Z[f],
                                 g;
-                            h && h.beAttacked && !h.FreeFreezeTime && !h.FreeSetbodyTime && ((g = $Z[e]) && g.getHit0(g, 10, 0), h.JudgeAttackH())
+                            h && h.beAttacked && !h.FreeFreezeTime && !h.FreeSetbodyTime && ((g = $Z[e]) && g.getHit0(g, 10, 0), h.JudgeAttack())
                         },
                         [d, c])
                 },
