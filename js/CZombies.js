@@ -1481,7 +1481,7 @@ jinyinAct: function(a){
         {transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",left:(a.PZ?"-250":"40")+"px"},$(a.id),0),
 	a.Ornaments&&EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{
 		transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",
-		left:a.PZ?"20px":"40px";
+		left:a.PZ?"20px":"40px"
 	},0),
 	a.check=0);
        },   
