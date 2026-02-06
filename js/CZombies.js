@@ -1432,6 +1432,7 @@ var CZombies = function(b, a) {
                 b = "images/Zombies/Zombie/";
             return ["images/Card/Zombies/ScreenDoorZombie.png", a + "0.gif", a + "HeadWalk1.gif", a + "HeadAttack1.gif", a + "LostHeadWalk1.gif", a + "LostHeadAttack1.gif", b + "Zombie2.gif", b + "ZombieAttack.gif", b + "ZombieLostHead.gif", b + "ZombieLostHeadAttack.gif", b + "ZombieHead.gif" + $Random, b + "ZombieDie.gif" + $Random, b + "BoomDie.gif" + $Random, a + "1.gif"]
         })(),
+		HP:270,
 jinyinAct: function(a){
 		var z = $(a.id);
 		z.FumeDoor = "Fume" + Math.random();
@@ -1477,13 +1478,13 @@ jinyinAct: function(a){
         a &&oSym.addTask(100, arguments.callee, [a,a.id + "_Bullet",z])
       }, [a,a.id + "_Bullet",z]);//大喷技能
 	var P=$(a.id);
-	!(a.PZ==a.check)&&(EditEle($(a.id + "_Bullet"), 0,
+	!(a.PZ==a.check)&&(a.Ornaments&&(EditEle($(a.id + "_Bullet"), 0,
         {transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",left:(a.PZ?"-250":"40")+"px"},$(a.id),0),
-	a.Ornaments&&EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{
+	EditImg($(P.FumeDoor),0,"images/Plants/FumeShroom/FumeShroom.gif",{
 		transform:a.PZ?"rotateY(180deg)":"rotateY(0deg)",
 		left:a.PZ?"20px":"40px"
-	},0),
-	a.check=0);
+	},0)),
+	a.check=a.PZ);
        },   
         PlayNormalballAudio: function() {
             PlayAudio("splat" + Math.floor(1 + Math.random() * 3))
