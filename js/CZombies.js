@@ -1005,7 +1005,7 @@ var CZombies = function(b, a) {
                                             [A, z]))
                                     },
                                     [t, u, w, o]);
-                                oSym。addTask(200,
+                                oSym.addTask(200,
                                     function(y, i) {
                                         var z = $Z[y],
                                             j;
