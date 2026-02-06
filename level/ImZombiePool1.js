@@ -1,58 +1,64 @@
 /*
-	关卡设计者: 寒冰投手
-	关卡制作者: 我是帅
-	关卡植物: 5大喷 3南瓜 3魅惑 4土豆 8小向 4三线 3机枪 3仙人掌 10荷叶
+        关卡设计者: 寒冰投手
+        关卡植物: 5大喷菇 3南瓜头 3魅惑菇 4土豆地雷 8向日葵 4三线射手 3机枪射手 3仙人掌 10荷叶
 */
 oS.Init({
-	PName: [oFumeShroom, oPumpkinHead, oHypnoShroom, oPotatoMine, oSunFlower, oThreepeater, oGatlingPea, oCactus, oLilyPad],
-	ZName: [oZombie, oConeheadZombie, oBucketheadZombie, oDuckyTubeZombie1, oDuckyTubeZombie2, oDuckyTubeZombie3, oScreenDoorZombie, oPoleVaultingZombie, oBalloonZombie],
-	PicArr: ["images/interface/background4.jpg", "images/interface/trophy.png", "images/interface/Stripe.png"],
-	backgroundImage: "images/interface/background4.jpg",
-	StartGameMusic: "Mountains",
-	LevelName: "解谜模式：泳池奇遇",
-	LvlEName: "ImZombie_Water_3",
-	LoadMusic: "Mountains",
-	ShowScroll: false, ProduceSun: false, SunNum: 350, CardKind: 1,
-	Coord: 2, DKind: 0, LF: [0, 1, 1, 2, 2, 1, 1],
-	BrainsNum: 6, Plants_C: 5,
-	ArP: {
-		ArC: [1, 5], ArR: [1, 6],
-	},
-	RiddleAutoGrow: function() {
-		Summon(Set_Level(oS.Plants_C, 0, 0, 0, [
-			{"ID": "02", "Set_Num": 8, "CanWater": true}, 
-			{"ID": "05", "Set_Num": 4, "CanWater": false}, 
-			{"ID": "11", "Set_Num": 5, "CanWater": true}, 
-			{"ID": "13", "Set_Num": 3, "CanWater": true}, 
-			{"ID": "19", "Set_Num": 4, "CanWater": true}, 
-			{"ID": "27", "Set_Num": 3, "CanWater": true}, 
-			{"ID": "GP", "Set_Num": 3, "CanWater": true}, 
-		], [1, 1, 2, 2, 1, 1]) + Set_Level(oS.Plants_C, 0, 0, 0, [
-			{"ID": "31", "Set_Num": 3, "CanWater": true}, 
-		], [1, 1, 2, 2, 1, 1]));
-
-		NewImg("iStripe", "images/interface/Stripe.png", "left:" + (GetX1X2(5 + 1)[0] - 11) + "px;top:65px", EDMove);
-		for(let i = 1; i <= oS.R; i++) CustomSpecial(oBrains, i, 0);
-	},
-	StartGame: function() {
-		oP.Monitor(), BeginCool();
-		SetVisible($("dFlagMeter"), $("dFlagMeterContent"), $("dTop"));
-		oS.RiddleAutoGrow();
-	}
-}, __Template_Normal_FlagToEnd__, {
-	Summon: function(str){
-		let q = str, j = {"01": oPeashooter, "02": oSunFlower, "03": oCherryBomb, "04": oWallNut, "05": oPotatoMine, "06": oSnowPea, "07": oChomper, "08": oRepeater, "09": oPuffShroom, 10: oSunShroom, 11: oFumeShroom, 12: oGraveBuster, 13: oHypnoShroom, 14: oScaredyShroom, 15: oIceShroom, 16: oDoomShroom, 17: oLilyPad, 18: oSquash, 19: oThreepeater, 20: oTangleKelp, 21: oJalapeno, 22: oSpikeweed, 23: oTorchwood, 24: oTallNut, 25: oSeaShroom, 26: oPlantern, 27: oCactus, 28: oBlover, 29: oSplitPea, 30: oStarfruit, 31: oPumpkinHead, 34: oFlowerPot, 36: oCoffeeBean, 37: oGarlic, 41: oGatlingPea, 42: oTwinSunflower, 43: oGloomShroom, 47: oSpikerock, "CB": oCabbage_Pro, "MP": oMelonPult_Pro, "CC": oCattail, "GP": oGatlingPea_Pro}, l = q.length;
-
-		for(let i = 0; i < l; i += 4){
-			let y = q.substr(i, 1), x = q.substr(i + 1, 1), id = j[q.substr(i + 2, 2)] || oPeashooter;
-			CustomSpecial(id, y, x, 1);
-		};
-	},
-	AutoSelectCard: function() {
-		var v = oS.ArCard, u = -1, t = v.length;
-		while (++u < t) SelectCard(v[u].prototype.EName);
-	},
-	Set_Level: __Template_IZ_ZUMMON_FUNC__
+    PName: [oFumeShroom, oPumpkinHead, oHypnoShroom, oPotatoMine, oSunFlower, oThreepeater, oGatlingPea, oCactus, oPeashooter, oRepeater, oJalapeno, oGarlic, oPlantern],
+    ZName: [oZombie2, oBucketheadZombie, oDuckyTubeZombie2, oDuckyTubeZombie3, oNewspaperZombie, oBalloonZombie,oSnorkelZombie, oDolphinRiderZombie,oScreenDoorZombie],
+    PicArr: ["images/interface/background4.jpg", "images/interface/trophy.png", "images/interface/Stripe.png"],
+    backgroundImage: "images/interface/background4.jpg",
+    Coord: 2,
+    DKind: 0,
+    LF: [0, 1, 1, 2, 2, 1, 1],
+    ShowScroll: false,
+    ProduceSun: false,
+    SunNum: 600,
+    BrainsNum: 6,
+    CardKind: 1,
+    LevelName: "泳池奇遇",
+    LvlEName: "ImZombiePool1",
+    LoadMusic: "Mountains",
+    StartGameMusic: "Mountains",
+    ArP: {
+        ArC: [1, 5],
+        ArR: [1, 6],
+        Auto: 1,
+        P: {
+            Arr: [12, 0, 0, 0, 0, 11, 12, 10, 2, 2, 1, 2, 4, 9, 4, 4, 4, 5, 6, 10, 9, 8, 7, 7, 8],
+            Arr1: [3, 3, 3, 3],
+            Arr2: [1, 1, 1]
+        }
+    },
+    RandomGrow: function(Point, Arr) {
+        Point.sort(function() {
+            return Math.random() - 0.5;
+        });
+        Arr.sort(function() {
+            return Math.random() - 0.5;
+        });
+        while (Point.length && Arr.length) CustomSpecial(oS.PName[Arr[Arr.length - 1]], Point[Point.length - 1][1], Point[Point.length - 1][0], 1), Point.length--, Arr.length--;
+    },
+    RiddleAutoGrow: function() {
+        var k = oS.ArP,
+            f = k.ArC,
+            j = k.ArR,
+            e = k.P,
+            d = oS.PName,
+            Arr = [];
+        var SummonRange = function(Arr, l, r) {
+            for (; l <= r; ++l)
+                for (var j = f[0]; j <= f[1]; ++j) Arr.push([j, l]);
+        };
+        SummonRange(Arr, 3, 4), oS.RandomGrow(Arr, e.Arr); // 处理泳池的植物
+        SummonRange(Arr, 1, 2), SummonRange(Arr, 5, 6), oS.RandomGrow(Arr, e.Arr1), oS.RandomGrow(Arr, e.Arr); // 处理剩余的植物
+        SummonRange(Arr, 1, 6), oS.RandomGrow(Arr, e.Arr2); // 处理南瓜头
+        for (var i = f[0]; i <= f[1]; ++i) CustomSpecial(oLilyPad, 3, i), CustomSpecial(oLilyPad, 4, i); // 荷叶
+        for (var i = j[0]; i <= j[1]; ++i) CustomSpecial(oBrains, i, 0); // 脑子
+        NewImg("iStripe", "images/interface/Stripe.png", "left:" + (GetX1X2(6)[0] - 11) + "px;top:65px", EDAll);
+    },
+    StartGame: function() {
+        oP.Monitor(), BeginCool();
+        SetVisible($("dFlagMeter"), $("dTop"));
+        oS.RiddleAutoGrow();
+    }
 });
-
-
