@@ -2685,6 +2685,7 @@ jinyinAct: function(a){
         ChkActs: function(f, d, g, c) {
             var b, a, e;
             if (f.Altitude == 3 && f.AttackedRX < GetX(1)) { // 气球掉落
+				f.getHit0(f,f.OrnHP);
                 f.Drop();
                 return 1;
             }!(f.FreeFreezeTime || f.FreeSetbodyTime) ? ((a = f.AttackedRX -= (b = f.Speed)) < -50 ? (g.splice(c, 1), f.DisappearDie(), e = 0) : (a < 100 && !f.PointZombie && (f.PointZombie = 1, !oS.CardKind && (StopMusic(), PlayAudio("losemusic", false)), f.ChangeR({
