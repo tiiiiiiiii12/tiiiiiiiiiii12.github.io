@@ -618,10 +618,6 @@ var CPlants = NewO({
                 d, b = 0;
             for (a in c.oTrigger) {
                 EditEle(c.BulletEle[b++].cloneNode(false), {
-                        id: d = "PB" + Math.random()
-                    },
-                0,EDPZ);
-                EditEle(c.BulletEle[1].cloneNode(false), {
                         id: d = "PB" + Math.random(),
                         src: c.PicArr[3]
                 },
@@ -636,7 +632,6 @@ var CPlants = NewO({
                     function(h, l, j, e, p, k, o, m, q, i) {
                         var n, g = GetC(p),
                             f = oZ["getZ" + e](p, k);
-                            if(k==c.R){var o=c.Pea}
                         o == 0 && i[k + "_" + g] && m != g && (PlayAudio("firepea"), o = 1, j = 40, m = g, l.src = "images/Plants/PB" + o + e + ".gif");
                         f && f.Altitude == 1 ? (f[{
                             "-1": "getSnowPea",
@@ -648,7 +643,7 @@ var CPlants = NewO({
                             height: "46px"
                         })).src = "images/Plants/PeaBulletHit.gif", oSym.addTask(10, ClearChild, [l])) : (p += (n = !e ? 5 : -5)) < oS.W && p > 100 ? (l.style.left = (q += n) + "px", oSym.addTask(1, arguments.callee, [h, l, j, e, p, k, o, m, q, i])) : ClearChild(l)
                     },
-                    [d, $(d), 20, 0, c.AttackedLX, a,0,0,c.AttackedLX - 40,oGd.$Torch])
+                    [d, $(d), 20, 0, c.AttackedLX, a,c.Pea,0,c.AttackedLX - 40,oGd.$Torch])
             }
         }
     }),
@@ -696,8 +691,8 @@ var CPlants = NewO({
                 function(d, b) {
                     var c = $P[d];
                     c && (c.NormalAttack1(),
-                          c.Pea=Math.round(Math.random()*2-1),
-                        c.PicArr[3]="images/Plants/PB"+a.Pea+"0.gif");
+                          c.jinyin&&(c.Pea=Math.round(Math.random()*2-1),
+                        c.PicArr[3]="images/Plants/PB"+a.Pea+"0.gif"));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
                 [this.id, 5])
