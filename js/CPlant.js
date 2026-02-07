@@ -61,11 +61,11 @@ var CPlants = NewO({
                     zIndex: j
                 },
                 n);
-            oGd.add(e, h + "_" + a + "_" + e.PKind);
-            Math.random()*100<e.jinyinnum&&(
+        Math.random()*100<e.jinyinnum&&(
                     e.jinyin=true,
                     e.jinyinAct&&e.jinyinAct(e)   
                 );
+            oGd.add(e, h + "_" + a + "_" + e.PKind);
             e.PrivateBirth(e, n)
         },
         getShadow: function(a) {
@@ -692,7 +692,7 @@ var CPlants = NewO({
                     var c = $P[d];
                     c && (c.NormalAttack1(),
                           c.jinyin&&(c.Pea=Math.round(Math.random()*2-1),
-                        c.PicArr[3]="images/Plants/PB0"+a.Pea+".gif"));
+                        c.PicArr[3]="images/Plants/PB0"+c.Pea+".gif"));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
                 [this.id, 5])
