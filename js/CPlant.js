@@ -619,7 +619,7 @@ var CPlants = NewO({
             for (a in c.oTrigger) {
                 EditEle(c.BulletEle[b++].cloneNode(false), {
                         id: d = "PB" + Math.random(),
-                        src: c.PicArr[3]
+                        src: a==c.R?c.PicArr[3]:"images/Plants/PB00.gif"
                 },
                 0,EDPZ);
                 oSym.addTask(15,
@@ -632,6 +632,7 @@ var CPlants = NewO({
                     function(h, l, j, e, p, k, o, m, q, i) {
                         var n, g = GetC(p),
                             f = oZ["getZ" + e](p, k);
+                            if (k == c.R) {var o = c.Pea}
                         o == 0 && i[k + "_" + g] && m != g && (PlayAudio("firepea"), o = 1, j = 40, m = g, l.src = "images/Plants/PB" + o + e + ".gif");
                         f && f.Altitude == 1 ? (f[{
                             "-1": "getSnowPea",
@@ -643,7 +644,7 @@ var CPlants = NewO({
                             height: "46px"
                         })).src = "images/Plants/PeaBulletHit.gif", oSym.addTask(10, ClearChild, [l])) : (p += (n = !e ? 5 : -5)) < oS.W && p > 100 ? (l.style.left = (q += n) + "px", oSym.addTask(1, arguments.callee, [h, l, j, e, p, k, o, m, q, i])) : ClearChild(l)
                     },
-                    [d, $(d), 20, 0, c.AttackedLX, a,c.Pea,0,c.AttackedLX - 40,oGd.$Torch])
+                    [d, $(d), 20, 0, c.AttackedLX, a,0,0,c.AttackedLX - 40,oGd.$Torch])
             }
         }
     }),
