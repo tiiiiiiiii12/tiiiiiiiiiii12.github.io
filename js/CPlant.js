@@ -581,6 +581,7 @@ var CPlants = NewO({
         height: 80,
         beAttackedPointR: 53,
         SunNum: 325,
+        Pea:0,
         PicArr: ["images/Card/Plants/Threepeater.png", "images/Plants/Threepeater/0.gif", "images/Plants/Threepeater/Threepeater.gif", "images/Plants/PB00.gif", "images/Plants/PeaBulletHit.gif"],
         AudioArr: ["splat1", "splat2", "splat3", "plastichit", "shieldhit", "shieldhit2"],
         Tooltip: "一次射出三行的豌豆",
@@ -617,7 +618,8 @@ var CPlants = NewO({
                 d, b = 0;
             for (a in c.oTrigger) {
                 EditEle(c.BulletEle[b++].cloneNode(false), {
-                        id: d = "PB" + Math.random()
+                        id: d = "PB" + Math.random(),
+                        src: a.PicArr[3]
                     },
                     0, EDPZ);
                 oSym.addTask(15,
@@ -641,13 +643,13 @@ var CPlants = NewO({
                             height: "46px"
                         })).src = "images/Plants/PeaBulletHit.gif", oSym.addTask(10, ClearChild, [l])) : (p += (n = !e ? 5 : -5)) < oS.W && p > 100 ? (l.style.left = (q += n) + "px", oSym.addTask(1, arguments.callee, [h, l, j, e, p, k, o, m, q, i])) : ClearChild(l)
                     },
-                    [d, $(d), 20, 0, c.AttackedLX, a, 0, 0, c.AttackedLX - 40, oGd.$Torch])
+                    [d, $(d), 20, 0, c.AttackedLX, a, a.Pea, 0, c.AttackedLX - 40, oGd.$Torch])
             }
         }
     }),
     oGatlingPea = InheritO(oPeashooter, {
         EName: "oGatlingPea",
-        CName: "加特林",
+        CName: "机枪射手",
         width: 88,
         height: 84,
         beAttackedPointR: 68,
@@ -656,7 +658,7 @@ var CPlants = NewO({
         PicArr: ["images/Card/Plants/GatlingPea.png", "images/Plants/GatlingPea/0.gif", "images/Plants/GatlingPea/GatlingPea.gif", "images/Plants/PB00.gif", "images/Plants/PeaBulletHit.gif"],
         AudioArr: ["splat1", "splat2", "splat3", "plastichit", "shieldhit", "shieldhit2"],
         Tooltip: "一次发射四颗豌豆<br>(需要双发射手)",
-        Produce: '加特林可以一次发射四颗豌豆<p>伤害：<font color="#FF0000">中等(每颗)</font><br>发射速度：<font color="#FF0000">四倍<br>只能种在双发射手上</font></p>当加特林宣布他要参军的时候，他的父母很为他担心，他们异口同声地对他说：“亲爱的，但这太危险了。”加特林拒绝让步，“生活本就危险，”他这样回答着，此时他的眼睛里，正闪烁着钢铁般的信念。',
+        Produce: '机枪射手可以一次发射四颗豌豆<p>伤害：<font color="#FF0000">中等(每颗)</font><br>发射速度：<font color="#FF0000">四倍<br>只能种在双发射手上</font></p>当机枪豌豆宣布他要参军的时候，他的父母很为他担心，他们异口同声地对他说：“亲爱的，但这太危险了。”加特林拒绝让步，“生活本就危险，”他这样回答着，此时他的眼睛里，正闪烁着钢铁般的信念。',
         PrivateBirth: function(c) {
             var b = c.AttackedLX,
                 a = b - 40;
