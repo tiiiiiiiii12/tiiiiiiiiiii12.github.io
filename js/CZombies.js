@@ -157,7 +157,8 @@ var CZombies = function(b, a) {
                     var c = this;
                     $Z[c.id] = c;
 					c.HP*=c.level;
-					c.tasktime=Math.round(c.tasktime/c.level);
+					c.OrnHP*=c.level;
+					c.tasktime/=c.level;
                     oZ.add(c);
                     c.BirthCallBack(c);
                 Math.random()*100<c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
@@ -1455,7 +1456,7 @@ var CZombies = function(b, a) {
                             i = k.OSpeed = k.LostPaperSpeed;
                         k.ChkActs =!k.WalkDirection?j.ChkActs:j.ChkActs1;
                         k.ChkActs1 = j.ChkActs1;
-						k.tasktime=25;
+						k.tasktime*=0.4;
                         k.Speed && (k.Speed = !k.FreeSlowTime ? i : 0.5 * i);
                         if (!k.beAttacked) {
                             return
