@@ -685,13 +685,12 @@ var CPlants = NewO({
         Pea:1,
         NormalAttack1: oPeashooter.prototype.NormalAttack,
         NormalAttack: function(a) {
-            this.NormalAttack1();
-            this.Pea=Math.round(Math.random()*2-1);
-            oSym.addTask(15,
+            oSym.addTask(0,
                 function(d, b) {
                     var c = $P[d];
                     c && (c.NormalAttack1(),
-                          c.Pea=Math.round(Math.random()*2-1));
+                          c.Pea=Math.round(Math.random()*2-1),
+                        c.PicArr[3]="images/Plants/PB"+a.Pea+"0.gif");
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
                 [this.id, 5])
