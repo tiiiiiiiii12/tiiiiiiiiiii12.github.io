@@ -693,7 +693,7 @@ var CPlants = NewO({
                 function(d, b) {
                     var c = $P[d];
                     c && (c.NormalAttack1(),
-                          c.jinyin==true&&(c.Pea=Math.round(Math.random()*1-1),
+                          c.jinyin==true&&(c.Pea=Math.round(Math.random()*2-1),
                         c.PicArr[3]="images/Plants/PB"+c.Pea+"0.gif"));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
