@@ -294,7 +294,7 @@ var CZombies = function(b, a) {
                         h = oGd.$,
 						a,
                         c;
-					(((a=g.JudgeAttackH1())&&a.beAttacked)||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!a&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
+					(((a=g.JudgeAttackH1())&&a.beAttacked)||(c = g.JudgeLR(g, e, f, d, h) || g.JudgeSR(g, e, f, d, h))) ? (!g.isAttacking&&(g.isAttacking = 1, g.EleBody.src = g.PicArr[g.AttackGif]),!(a&&a.beAttacked)&&g.NormalAttack(c[0], c[1])) : g.isAttacking && (g.isAttacking = 0, g.EleBody.src = g.PicArr[g.NormalGif])
                 },
 				JudgeAttackH1: function() {
                     var e = this,
@@ -623,6 +623,33 @@ var CZombies = function(b, a) {
             return -5
         },
         LostHeadGif: 14,
+		jinyinAct:function(a){
+			a.HP=800;
+			a.JudgeLR=function(f, d, e, c, g) {
+                    return e > 10 || e < 1 ? false : function() {
+                        d += --e + "_";
+                        var h = 3,
+                            i;
+                        while (h--) {
+                            if ((i = g[d + h]) && (i.EName=="oBrains")) {
+                                return i.AttackedRX >= c && i.AttackedLX <= c ? [f.id, i.id] : false
+                            }
+                        }
+                    }()
+                };
+                a.JudgeSR=function(f, d, e, c, g) {
+                    return e > 9 ? false : function() {
+                        d += e + "_";
+                        var h = 3,
+                            i;
+                        while (h--) {
+                            if ((i = g[d + h]) && (i.EName=="oBrains")) {
+                                return i.AttackedRX >= c && i.AttackedLX <= c ? [f.id, i.id] : false
+                            }
+                        }
+                    }()
+                }
+		},
         addSpotlight: (function() {
             var a, b;
             $User.Browser.IE6 ? (a = "8", b = "filter:alpha(opacity=30)") : a = b = "";
@@ -691,7 +718,7 @@ var CZombies = function(b, a) {
             b.ChangeChkActsTo1(b, a, b.EleBody);
             b.ResetBackupDancer(b);
             $(a + "_spotlightCon").style.left = "20px",
-                $(a + "_spotlight2Con").style.left = "25px";
+            $(a + "_spotlight2Con").style.left = "25px";
             oP.MonPrgs()
         },
         ResetBackupDancer: function(f) {
@@ -782,7 +809,7 @@ var CZombies = function(b, a) {
                 e,
                 function(o) {
                     return o + 30
-                },
+				},
                 r
             ];
             func = function(t, o) {
@@ -793,7 +820,7 @@ var CZombies = function(b, a) {
             oSym.addTask(c,
                 function(o) {
                     var t = $Z[o];
-                    t && t.beAttacked && !t.isAttacking && t.NormalAttack(o)
+                    t &&!t.jinyin&& t.beAttacked && !t.isAttacking && t.NormalAttack(o)
                 },
                 [d.id])
         },
@@ -1094,7 +1121,7 @@ var CZombies = function(b, a) {
         CName: "路障僵尸",
         OrnHP: 370,
         Lvl: 2,
-        SunNum: 75,
+        SunNum: 100,
         StandGif: 11,
         PicArr: (function() {
             var b = "images/Zombies/ConeheadZombie/",
@@ -1118,7 +1145,7 @@ var CZombies = function(b, a) {
 				}
 			}
 		},
-        Produce: '他的路障头盔，使他两倍坚韧于普通僵尸。<p>韧性：<font color="#FF0000">中</font></p>和其他僵尸一样，路障头僵尸盲目地向前。但某些事物却使他停下脚步，捡起一个交通路障，并固实在自己的脑袋上。是的，他很喜欢参加聚会。'
+        Produce: '他的路障头盔，使他两倍坚韧于普通僵尸。<p>韧性：<font color="#FF0000">中</font><br>精英形态：<font color="#FF0000">真·路障僵尸（防具600，使其附近的其他僵尸换行）</font></p>和其他僵尸一样，路障头僵尸盲目地向前。但某些事物却使他停下脚步，捡起一个交通路障，并固实在自己的脑袋上。是的，他很喜欢参加聚会。'
     }),
     oBucketheadZombie = InheritO(oConeheadZombie, {
         EName: "oBucketheadZombie",
