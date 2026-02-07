@@ -152,9 +152,12 @@ var CZombies = function(b, a) {
 						},
                         [d, c]) : SetBlock(c)
                 },
+			    level:1,
                 Birth: function() {
                     var c = this;
                     $Z[c.id] = c;
+					c.HP*=c.level;
+					c.tasktime=Math.round(c.tasktime/c.level);
                     oZ.add(c);
                     c.BirthCallBack(c);
                 Math.random()*100<c.jinyinnum&&(c.jinyin=true,c.jinyinAct&&c.jinyinAct(c));
