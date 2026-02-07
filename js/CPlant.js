@@ -617,10 +617,13 @@ var CPlants = NewO({
             var a, c = this,
                 d, b = 0;
             for (a in c.oTrigger) {
-                EditEle(c.BulletEle[1].cloneNode(false), {
-                        id: d = "PB" + Math.random(),
-                        src: c.PicArr[3]
+                EditEle(c.BulletEle[b++].cloneNode(false), {
+                        id: d = "PB" + Math.random()
                     },
+                0,EDPZ);
+                EditEle(c.BulletEle[1].cloneNode(false), {
+                        src: c.PicArr[3]
+                },
                 0,EDPZ);
                 oSym.addTask(15,
                     function(f) {
@@ -636,7 +639,7 @@ var CPlants = NewO({
                         o == 0 && i[k + "_" + g] && m != g && (PlayAudio("firepea"), o = 1, j = 40, m = g, l.src = "images/Plants/PB" + o + e + ".gif");
                         f && f.Altitude == 1 ? (f[{
                             "-1": "getSnowPea",
-                            0: "getPea",
+                            0: "getPea"，
                             1: "getFirePea"
                         } [o]](f, j, e), (SetStyle(l, {
                             left: q + 28 + "px",
