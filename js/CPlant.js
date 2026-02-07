@@ -621,7 +621,6 @@ var CPlants = NewO({
                         id: d = "PB" + Math.random(),
                         src: a.PicArr[3]
                     },
-                    0, EDPZ);
                 oSym.addTask(15,
                     function(f) {
                         var e = $(f);
@@ -643,7 +642,7 @@ var CPlants = NewO({
                             height: "46px"
                         })).src = "images/Plants/PeaBulletHit.gif", oSym.addTask(10, ClearChild, [l])) : (p += (n = !e ? 5 : -5)) < oS.W && p > 100 ? (l.style.left = (q += n) + "px", oSym.addTask(1, arguments.callee, [h, l, j, e, p, k, o, m, q, i])) : ClearChild(l)
                     },
-                    [d, $(d), 20, 0, c.AttackedLX, a, a.Pea, 0, c.AttackedLX - 40, oGd.$Torch])
+                    [d, $(d), 20, 0, c.AttackedLX, a,a.Pea,0,c.AttackedLX - 40,oGd.$Torch])
             }
         }
     }),
@@ -678,13 +677,21 @@ var CPlants = NewO({
             var c = b[1];
             return c && c.EName == "oRepeater"
         },
+        jinyinAct:function(a){
+        a.PrivateBirth=oThreepeater.prototype.PrivateBirth;
+        a.NormalAttack1=oThreepeater.prototype.NormalAttack;
+        a.PrivateDie=oThreepeater.prototype.PrivateDie;
+        },
+        Pea:1,
         NormalAttack1: oPeashooter.prototype.NormalAttack,
         NormalAttack: function(a) {
             this.NormalAttack1();
+            this.Pea=Math.round(Math.random()*2-1);
             oSym.addTask(15,
                 function(d, b) {
                     var c = $P[d];
-                    c && c.NormalAttack1();
+                    c && (c.NormalAttack1(),
+                          c.Pea=Math.round(Math.random()*2-1));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
                 [this.id, 5])
@@ -1016,6 +1023,7 @@ var CPlants = NewO({
         getShadow: function(a) {
             return "left:-8px;top:25px"
         },
+        jinyinAct:function(){this.canEat=0},
         CanGrow: function(c, b, d) {
             var a = b + "_" + d,
                 ArP = oS.ArP;
@@ -1086,7 +1094,7 @@ var CPlants = NewO({
             b > 2 ? (c.HP -= a) < 1 && c.Die() : c.NormalAttack(c.pixelLeft, c.pixelRight, c.R)
         },
         PrivateBirth: function(b, a) {
-            !a && oSym.addTask(1500,
+            !a && oSym.addTask(b.jinyin?0:1500,
                 function(d) {
                     var c = $P[d];
                     c && ($(d).childNodes[1].src = "images/Plants/PotatoMine/PotatoMine.gif", c.Status = 1, c.canTrigger = 1, c.getHurt = c.getHurt2)
@@ -1101,7 +1109,7 @@ var CPlants = NewO({
         TriggerCheck: function(e, c) {
             var a = this.R,
                 b = this.C;
-            e.beAttacked && e.Altitude < 2 && !oGd.$[a + "_" + b + "2"] && this.NormalAttack(this.pixelLeft, this.pixelRight, this.R)
+            e.beAttacked && e.Altitude < 2 && !oGd.$[a + "_" + b + "2"] && this.NormalAttack(this.pixelLeft-80,this.pixelRight+80, this.R)
         },
         NormalAttack: function(j, h, e) {
             var g = this,
@@ -1111,8 +1119,9 @@ var CPlants = NewO({
                 f = c.length,
                 a;
             while (f--) {
-                (a = c[f]).Altitude < 2 && a.getThump()
+                (a = c[f]).Altitude < 2 && a.getThump(1500)
             }
+            g.jinyin&&((CustomSpecial(oPotatoMine,g.R,Math.min(g.C+2,9))).PKind=10000);
             g.Die(1);
             PlayAudio("potato_mine");
             EditEle(d.childNodes[1], {
@@ -1576,7 +1585,7 @@ var CPlants = NewO({
         height: 59,
         beAttackedPointR: 40,
         SunNum: 50,
-        HP: 400,
+        HP: 500,
         PicArr: ["images/Card/Plants/Garlic.png", "images/Plants/Garlic/0.gif", "images/Plants/Garlic/Garlic.gif", "images/Plants/Garlic/Garlic_body2.gif", "images/Plants/Garlic/Garlic_body3.gif"],
         Tooltip: "将僵尸赶到其它的横行",
         Produce: '大蒜可以让僵尸改变前进的路线。<p>范围：<font color="#FF0000">近距离接触</font><br>特点：<font color="#FF0000">改变僵尸的前进路线</font></p>路线转向，这不仅仅是大蒜的专业，更是他的热情所在。他在布鲁塞尔大学里，获得了转向学的博士学位。他能把路线向量和反击阵列，讲上一整天。他甚至会把家里的东西，推到街上去。不知道为啥，他老婆还可以忍受这些。',
@@ -1591,7 +1600,7 @@ var CPlants = NewO({
         getHurt: function(e, b, a) {
             var c = this,
                 d = $(c.id).childNodes[1];
-            !(b%3) ? (c.HP -= 20) < 1 ? c.Die() : (b!=3&&e.ChangeR({
+            !(b%3) ? (c.HP -=(a*0.2)) < 1 ? c.Die() : (b!=3&&e.ChangeR({
                 R: c.R
             }), c.HP < 134 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/Garlic/Garlic_body3.gif") : c.HP < 267 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/Garlic/Garlic_body2.gif")): c.Die()
         }
@@ -2024,7 +2033,7 @@ var CPlants = NewO({
                 function(g, e) {
                     var f = $(g);
                     f && SetVisible(f);
-                    c.AttTime+=3;
+                    c.AttTime-=3;
                     oSym.addTask(130+Math.max(c.AttTime,-80),
                         function(h) {
                             var i = $P[h];
