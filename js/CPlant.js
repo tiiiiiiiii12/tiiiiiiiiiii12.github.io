@@ -684,7 +684,7 @@ var CPlants = NewO({
         a.PrivateDie=oThreepeater.prototype.PrivateDie;
         a.getTriggerR=oThreepeater.prototype.getTriggerR;
         },
-        Pea:1,
+        Pea:0,
         NormalAttack1: oPeashooter.prototype.NormalAttack,
         NormalAttack: function(a) {
             oSym.addTask(0,
@@ -692,7 +692,7 @@ var CPlants = NewO({
                     var c = $P[d];
                     c && (c.NormalAttack1(),
                           c.jinyin&&(c.Pea=Math.round(Math.random()*2-1),
-                        c.PicArr[3]="images/Plants/PB"+a.Pea+"0.gif"));
+                        c.PicArr[3]="images/Plants/PB0"+a.Pea+".gif"));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
                 [this.id, 5])
