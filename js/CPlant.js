@@ -622,6 +622,7 @@ var CPlants = NewO({
                     },
                 0,EDPZ);
                 EditEle(c.BulletEle[1].cloneNode(false), {
+                        id: d = "PB" + Math.random(),
                         src: c.PicArr[3]
                 },
                 0,EDPZ);
@@ -1047,7 +1048,7 @@ var CPlants = NewO({
         width: 75,
         height: 55,
         beAttackedPointR: 55,
-        SunNum: 25,
+        SunNum: 75,
         coolTime: 30,
         Stature: -1,
         CanGrow: function(d, c, f) {
@@ -1126,7 +1127,9 @@ var CPlants = NewO({
             while (f--) {
                 (a = c[f]).Altitude < 2 && a.getThump(1500)
             }
-            g.jinyin&&((CustomSpecial(oPotatoMine,g.R,Math.min(g.C+2,9))).PKind=10000);
+        for(i=g.C;i<=9;i++){
+            !oGd.$[g.R+"_"+i+"_1"]&&g.jinyin&&(CustomSpecial(oPotatoMine,g.R,i));
+        }
             g.Die(1);
             PlayAudio("potato_mine");
             EditEle(d.childNodes[1], {
