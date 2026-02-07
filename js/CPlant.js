@@ -672,7 +672,7 @@ var CPlants = NewO({
                 pixelLeft: a,
                 F: oGd.MB1
             });
-            c.BulletEle = NewImg(0, c.PicArr[3], "left:" + a + "px;top:" + (c.pixelTop + 8) + "px;visibility:hidden;z-index:" + (c.zIndex + 2))
+            c.BulletEle = NewImg(0, "images/Plants/PB00.gif", "left:" + a + "px;top:" + (c.pixelTop + 8) + "px;visibility:hidden;z-index:" + (c.zIndex + 2))
         },
         CanGrow: function(b, a, d) {
             var c = b[1];
@@ -693,7 +693,7 @@ var CPlants = NewO({
                 function(d, b) {
                     var c = $P[d];
                     c && (c.NormalAttack1(),
-                          c.jinyin==true&&(c.Pea=Math.round(Math.random()*2-1),
+                          c.jinyin==true&&(c.Pea=Math.floor(Math.random()*3-1),
                         c.PicArr[3]="images/Plants/PB"+c.Pea+"0.gif"));
                     --b && oSym.addTask(15, arguments.callee, [d, b])
                 },
