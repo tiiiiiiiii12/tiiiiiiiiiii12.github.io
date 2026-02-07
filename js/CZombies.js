@@ -1161,7 +1161,14 @@ var CZombies = function(b, a) {
         PlayNormalballAudio: function() {
             PlayAudio(["shieldhit", "shieldhit2"][Math.floor(Math.random() * 2)])
         },
-		jinyinAct:function(){},
+		jinyinAct:function(a){
+			a.PrivateAct=function(a){
+				if(!a.bool&&!a.Ornaments){
+					PrivateTombstones(a.R,GetC(a.ZX));
+					a.bool=1;
+				}
+			}
+		},
         Produce: '他的铁桶头盔，能极大程度的承受伤害。<p>韧性：<font color="#FF0000">高</font><br>弱点：<font color="#FF0000">磁力菇</font></p>铁桶头僵尸经常戴着水桶，在冷漠的世界里显得独一无二。但事实上，他只是忘记了，那铁桶还在他头上而已。'
     }, {
         PicArr: {
@@ -1781,10 +1788,11 @@ jinyinAct: function(a){
     oSnorkelZombie = InheritO(oDuckyTubeZombie1, {
         EName: "oSnorkelZombie",
         CName: "潜水僵尸",
-        Lvl: 1,
+        Lvl: 2,
         SunNum: 75,
         width: 143,
         height: 200,
+		HP:500,
         beAttackedPointL: 40,
         beAttackedPointR: 100,
         OSpeed: 3.2,
@@ -1837,12 +1845,12 @@ jinyinAct: function(a){
             (a = e.JudgeLR(e, c, d, b, g) || e.JudgeSR(e, c, d, b, g)) ? !e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[9] + Math.random(), oSym.addTask(50,
                 function(i, h) {
                     $Z[i] && h.beAttacked && (h.EleBody.src = h.PicArr[h.AttackGif], h.Altitude = 1, h.NormalAttack(a[0], a[1]))
-                },
+                }，
                 [f, e])) : e.NormalAttack(a[0], a[1]): e.isAttacking && (e.EleBody.src = e.PicArr[10] + Math.random(), e.Altitude = 0, oSym.addTask(70,
                 function(i, h) {
                     $Z[i] && h.beAttacked && (h.isAttacking = 0, h.EleBody.src = h.PicArr[h.NormalGif])
                 },
-                [f, e]))
+                [f,e]))
         },
         NormalAttack: function(b, a) {
             oSym.addTask(100,
