@@ -628,7 +628,8 @@ var CZombies = function(b, a) {
         },
         LostHeadGif: 14,
 		jinyinAct:function(a){
-			a.HP=800;
+			a.HP*=1.6;
+			a.Ele.style.filter="grayscale(100%) brightness(400%)";
 			a.JudgeLR=function(f, d, e, c, g) {
                     return e > 10 || e < 1 ? false : function() {
                         d += --e + "_";
