@@ -621,6 +621,7 @@ var CPlants = NewO({
                         id: d = "PB" + Math.random(),
                         src: a.PicArr[3]
                     },
+                0,EDPZ);
                 oSym.addTask(15,
                     function(f) {
                         var e = $(f);
