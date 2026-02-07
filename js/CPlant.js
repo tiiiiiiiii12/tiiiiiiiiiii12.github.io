@@ -607,7 +607,7 @@ var CPlants = NewO({
                     pixelLeft: d,
                     F: oGd.MB1
                 }));
-                f.BulletEle.push(NewImg(0, "images/Plants/PB00.gif", "left:" + d + "px;top:" + (GetY(b) - 50) + "px;visibility:hidden;z-index:" + (3 * b + 2)))
+                f.BulletEle.push(NewImg(0, "images/Plants/PB00.gif", "left:" + d + "px;top:" + (GetY(b) - 80) + "px;visibility:hidden;z-index:" + (3 * b + 2)))
             }
         },
         PrivateDie: function(a) {
@@ -678,11 +678,13 @@ var CPlants = NewO({
             var c = b[1];
             return c && c.EName == "oRepeater"
         },
+        getTriggerR:function(a){
+        return (this.jinyin?[a > 2 ? a - 1 : 1, a < oS.R ? Number(a) + 1 : a]:[a, a])
+        },
         jinyinAct:function(a){
         a.PrivateBirth=oThreepeater.prototype.PrivateBirth;
         a.NormalAttack1=oThreepeater.prototype.NormalAttack;
-        a.PrivateDie=oThreepeater.prototype.PrivateDie;
-        a.getTriggerR=oThreepeater.prototype.getTriggerR;
+        a.PrivateDie=oThreepeater.prototype.PrivateDie
         },
         Pea:0,
         NormalAttack1: oPeashooter.prototype.NormalAttack,
