@@ -5,6 +5,7 @@ oS.Init({
   backgroundImage:"images/interface/background2.jpg",
   ShowScroll:false,
   SunNum:450,
+  DKind:0,
   BrainsNum:5,
   ProduceSun:false,
   CardKind:1,
