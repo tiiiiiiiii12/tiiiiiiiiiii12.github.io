@@ -1097,11 +1097,12 @@ var CZombies = function(b, a) {
         Speed: 4.4,
 		HP:500,
 		SunNum:75,
-		tasktime:10,
 		jinyinAct:function(a){
 			a.NormalGif=10;
 			a.AttackGif=11;
 			a.EleBody.src=a.PicArr[a.NormalGif];
+			a.tasktime*=0.1;
+			a.GoingDieHead=function(){};
 			a.JudgeAttack=function() {
                 var f = this,
                     c = f.ZX,
