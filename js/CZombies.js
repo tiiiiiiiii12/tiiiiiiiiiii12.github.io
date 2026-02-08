@@ -340,6 +340,15 @@ var CZombies = function(b, a) {
                     d && d.beAttacked && d.AttackedLX < oS.W && d.Altitude == 1 ? (!e.isAttacking ? (e.isAttacking = 1, e.EleBody.src = e.PicArr[e.AttackGif], e.AttackZombie(f, c = d.id)) : e.AttackZombie(f, d.id, 1)) : e.isAttacking && (e.isAttacking = 0, e.EleBody.src = e.PicArr[e.NormalGif])
 					return d
                 },
+	getr:function(e,l){
+		GetC(e.ZX)<10&&(e.ZX +=l,
+			e.AttackedLX += l, 
+			e.AttackedRX += l, 
+			e.X += l, 
+			SetStyle(e.Ele, {
+            left: e.X + "px"
+          }))
+		},
 			tasktime:100,
                 AttackZombie: function(d, c) {
                     oSym.addTask($Z[d].tasktime*0.1,
@@ -530,6 +539,11 @@ var CZombies = function(b, a) {
             (e.delayT = a) && (e.FreeSetbodyTime = oSym.Now);
             return e.getHTML(e.id = b, e.X, e.pixelTop = f, e.zIndex = 3 * g + 1, "none", j || 0, e.height + "px", e.PicArr[e.StandGif])
         },
+		jinyinAct:function(a){
+		a.PrivateAct=function(a){
+			a.Speed&&!a.isAttacking&&a.getr(a,-(a.Speed))
+		}
+		},
         Produce: '当舞王僵尸摇摆时，这种僵尸四个结伙出现。</p><p>韧性：<font color="#FF0000">低</font><br>伴舞僵尸曾在位于僵尸纽约城的“咀利牙”表演艺术学院钻研过六年的舞技。',
         BirthCallBack: function(e) {
             var d = e.delayT,
@@ -557,7 +571,7 @@ var CZombies = function(b, a) {
                 function(e, d) {
                     var f = $Z[e];
                     f && f.beAttacked && f.ChangeChkActsTo1(f, e, d)
-                },
+                }，
                 [b, a])
         },
         ChangeChkActsTo1: function(c, b, a) {
@@ -579,6 +593,7 @@ var CZombies = function(b, a) {
                 ar: [oS.R - 1],
                 CustomTop: 400 - g.height + g.GetDY()
             })), g.ZX = g.AttackedLX -= b, g.Ele.style.left = Math.floor(g.X -= b) + "px", f = 1)) : f = 1) : f = 1;
+			g.PrivateAct&&g.PrivateAct(g);
             g.ChkSpeed(g);
             return f
         },
@@ -1359,7 +1374,7 @@ var CZombies = function(b, a) {
         CName: "读报僵尸",
         OrnHP: 150,
         Lvl: 3,
-		HP:400,
+		HP:450,
 		SunNum:75,
         LostPaperGif: 13,
         StandGif: 14,
