@@ -540,8 +540,9 @@ var CZombies = function(b, a) {
             return e.getHTML(e.id = b, e.X, e.pixelTop = f, e.zIndex = 3 * g + 1, "none", j || 0, e.height + "px", e.PicArr[e.StandGif])
         },
 		jinyinAct:function(a){
+		a.Ele.style.filter="grayscale(100%) brightness(400%)";
 		a.PrivateAct=function(a){
-			a.Speed&&!a.isAttacking&&a.getr(a,-(a.Speed))
+			a.Speed&&!a.isAttacking&&a.getr(a,-(a.Speed*2))
 		}
 		},
         Produce: '当舞王僵尸摇摆时，这种僵尸四个结伙出现。</p><p>韧性：<font color="#FF0000">低</font><br>伴舞僵尸曾在位于僵尸纽约城的“咀利牙”表演艺术学院钻研过六年的舞技。',
@@ -1081,7 +1082,6 @@ var CZombies = function(b, a) {
 		jinyinAct:function(){
 			this.OSpeed=this.Speed=3.6;
 			this.tasktime*=0.75;
-			$(this.id).style.filter = "sepia(0.6) hue-rotate(150deg) saturate(1.5)";
 		},
         Produce: '韧性：<font color="#FF0000">低</font></p>这种僵尸喜爱脑髓，贪婪而不知足。脑髓，脑髓，脑髓，夜以继日地追求着。老而臭的脑髓？腐烂的脑髓？都没关系。僵尸需要它们。'
     }),
