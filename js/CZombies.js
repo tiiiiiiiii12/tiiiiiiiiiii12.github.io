@@ -1014,7 +1014,7 @@ var CZombies = function(b, a) {
                                     (q = m[r]) && (!(l = q[0]) || !$Z[l]) && (u[o] = (w[o] = new oBackupDancer).CustomBirth(q[1], q[2](v), 100, q[0] = "Z_" + Math.random(),
                                 h.backupDancer+=1), n.push(NewImg("", k, "z-index:" + q[3] + ";left:" + q[4](v) + "px;top:" + q[5] + "px", EDPZ)), ++o)
                                 }
-								h.backupDancer>9&&oP.SetTimeoutTomZombie([oZombie,oZombie2,oZombie3,oFlagZombie,oConeheadZombie,oBucketheadZombie,oNewspaperZombie]);
+								h.backupDancer>9&&(oP.SetTimeoutTomZombie([oZombie,oZombie2,oZombie3,oFlagZombie,oConeheadZombie,oBucketheadZombie,oNewspaperZombie]),h.backupDancer=0);
                                 oSym.addTask(220,
                                     function() {
                                         var i = arguments.length;
