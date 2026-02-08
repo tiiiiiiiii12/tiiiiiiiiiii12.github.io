@@ -983,6 +983,7 @@ var CZombies = function(b, a) {
             b.ExchangeLR(b, 0);
             b.TurnLeft(b)
         },
+		backupDancer:0,
         Summon: function(d, c) {
             d.LostHeadGif = 16;
             var a = d.EleBody,
@@ -1010,8 +1011,10 @@ var CZombies = function(b, a) {
                             if (h && h.beAttacked) {
                                 s.src = "images/Zombies/DancingZombie/Summon3.gif";
                                 while (r--) {
-                                    (q = m[r]) && (!(l = q[0]) || !$Z[l]) && (u[o] = (w[o] = new oBackupDancer).CustomBirth(q[1], q[2](v), 100, q[0] = "Z_" + Math.random()), n.push(NewImg("", k, "z-index:" + q[3] + ";left:" + q[4](v) + "px;top:" + q[5] + "px", EDPZ)), ++o)
+                                    (q = m[r]) && (!(l = q[0]) || !$Z[l]) && (u[o] = (w[o] = new oBackupDancer).CustomBirth(q[1], q[2](v), 100, q[0] = "Z_" + Math.random(),
+                                h.backupDancer+=1), n.push(NewImg("", k, "z-index:" + q[3] + ";left:" + q[4](v) + "px;top:" + q[5] + "px", EDPZ)), ++o)
                                 }
+								h.backupDancer>7&&SetTimeoutTomZombie([oZombie,oZombie2,oZombie3,oFlagZombie,oConeheadZombie,oBucketheadZombie,oNewspaperZombie]);
                                 oSym.addTask(220,
                                     function() {
                                         var i = arguments.length;
@@ -1086,14 +1089,38 @@ var CZombies = function(b, a) {
     oFlagZombie = InheritO(oZombie, {
         PicArr: (function() {
             var a = "images/Zombies/FlagZombie/";
-            return ["images/Card/Zombies/FlagZombie.png", a + "0.gif", a + "FlagZombie.gif", a + "FlagZombieAttack.gif", a + "FlagZombieLostHead.gif", a + "FlagZombieLostHeadAttack.gif", "images/Zombies/Zombie/ZombieHead.gif" + $Random, "images/Zombies/Zombie/ZombieDie.gif" + $Random, "images/Zombies/Zombie/BoomDie.gif" + $Random, a + "1.gif"]
+            return ["images/Card/Zombies/FlagZombie.png", a + "0.gif", a + "FlagZombie.gif", a + "FlagZombieAttack.gif", a + "FlagZombieLostHead.gif", a + "FlagZombieLostHeadAttack.gif", "images/Zombies/Zombie/ZombieHead.gif" + $Random, "images/Zombies/Zombie/ZombieDie.gif" + $Random, "images/Zombies/Zombie/BoomDie.gif" + $Random, a + "1.gif",a + "FlagZombiejinyin.gif",a + "FlagZombiejinyinAttack.gif"]
         })(),
         EName: "oFlagZombie",
         CName: "旗帜僵尸",
         OSpeed: 4.4,
         Speed: 4.4,
 		HP:500,
-		jinyinAct:function(){},
+		SunNum:75,
+		tasktime:10,
+		jinyinAct:function(a){
+			a.NormalGif=10;
+			a.AttackGif=11;
+			a.EleBody.src=a.PicArr[a.NormalGif];
+			a.JudgeAttack=function() {
+                var f = this,
+                    c = f.ZX,
+                    d = f.R + "_",
+                    e = GetC(c),
+                    g = oGd.$,
+					a,
+                    b;
+                ((a=f.JudgeAttackH1())&&a.beAttacked)||(b = f.JudgeLR(f, d, e, c, g) || f.JudgeSR(f, d, e, c, g))&&!(a&&a.beAttacked)&&f.NormalAttack(b[0], b[1])
+            },
+			a.NormalAttack=function(c, b) {
+                var d = $Z[c];
+                $P[b].getHurt(d, 2, d.Attack)
+            },
+			a.Speed*=1.5;
+			a.OSpeed*=1.5;
+			a.getSnowPea=OrnNoneZombies.prototype.getPea;
+			a.getSlow=a.getFreeze=function(){};
+		},
         beAttackedPointR: 101,
         Produce: '旗帜僵尸标志着即将来袭的一大堆僵尸"流"。<p>韧性：<font color="#FF0000">低</font></p>毫无疑问，摇旗僵尸喜爱脑髓。但在私下里他也迷恋旗帜。也许是因为旗帜上也画有脑子吧，这很难说。'
     }),
@@ -2120,6 +2147,7 @@ jinyinAct: function(a){
             Speed: 2.5,
             AKind: 2,
             Attack: 50,
+			tasktime:20,
             Produce: '冰车僵尸运用冰雪，碾过你的植物。<p>韧性：<font color="#FF0000">高</font><br>特点：<font color="#FF0000">碾压植物，留下条冰道</font></p>经常被误以为是在驾驶着冰车的僵尸，但事实上冰车僵尸是种完全不同的生物形式，他与太空兽人联系更紧密而不是僵尸。',
             PicArr: (function() {
                 var b = "images/Zombies/Zomboni/";
@@ -2166,7 +2194,6 @@ jinyinAct: function(a){
                 c = GetC(h);
                 c > -1 && c < n[1] && (oGd.$Crater[j + "_" + c] = 1, n[1] = c);
                 h > 120 && h < n[2] && (n[2] = h, l.firstChild.style.clip = "rect(0,auto,auto," + f + "px)", l.childNodes[1].style.left = Math.max(0, f) + "px");
-                GetC(e.AttackedLX) > 5 && (e.OSpeed = (e.Speed -= 0.005));
                 return m
             },
             ChkActs1: function(f, d, g, c) {
@@ -2279,8 +2306,9 @@ jinyinAct: function(a){
                     d = f.R + "_",
                     e = GetC(c),
                     g = oGd.$,
+					a,
                     b;
-                (b = f.JudgeLR(f, d, e, c, g) || f.JudgeSR(f, d, e, c, g)) && f.NormalAttack(b[0], b[1])
+                ((a=f.JudgeAttackH1())&&a.beAttacked)||(b = f.JudgeLR(f, d, e, c, g) || f.JudgeSR(f, d, e, c, g))&&!(a&&a.beAttacked)&&f.NormalAttack(b[0], b[1])
             },
             JudgeLR: function(e, c, d, b, f) {
                 return d > 10 || d < 1 ? false : function() {
