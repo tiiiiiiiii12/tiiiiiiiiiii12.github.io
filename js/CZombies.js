@@ -572,7 +572,7 @@ var CZombies = function(b, a) {
                 function(e, d) {
                     var f = $Z[e];
                     f && f.beAttacked && f.ChangeChkActsTo1(f, e, d)
-                }，
+				},
                 [b, a])
         },
         ChangeChkActsTo1: function(c, b, a) {
@@ -1826,7 +1826,8 @@ jinyinAct: function(a){
             var b = "images/Zombies/DuckyTubeZombie3/",
                 a = "images/Zombies/DuckyTubeZombie1/";
             return ["images/Card/Zombies/DuckyTubeZombie1.png", b + "0.gif", b + "Walk1.gif", b + "Walk2.gif", b + "1.gif", b + "Attack.gif", "images/Zombies/Zombie/ZombieHead.gif" + $Random, a + "Die.gif" + $Random, a + "Walk1.gif", a + "Walk2.gif", a + "Attack.gif"]
-        })()
+        })(),
+		jinyinAct:oBucketheadZombie.prototype.jinyinAct
     }),
     oSnorkelZombie = InheritO(oDuckyTubeZombie1, {
         EName: "oSnorkelZombie",
