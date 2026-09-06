@@ -264,7 +264,7 @@ getLadder:function() {
 		},
         InitTrigger: function() {},
         Tooltip: "把它种在墓碑上用来吞噬墓碑",
-        Produce: '墓地苔用来吃掉墓碑。<p>使用方法：<font color="#FF0000">单次使用，只对墓碑生效。</font><br>特点：<font color="#FF0000">吞噬墓碑。</font><br>精英形态：使墓碑反向，出魅惑僵尸（魅惑墓碑上可种植物）</p>尽管墓地苔的外表十分吓人，但他想要所有人都知道，其实他喜欢小猫咪，而且利用业余时间，在一家僵尸康复中心做志愿者。“我只是在做正确的事情，”他说。',
+        Produce: '墓地苔用来吃掉墓碑。<p>使用方法：<font color="#FF0000">单次使用，只对墓碑生效。</font><br>特点：<font color="#FF0000">吞噬墓碑。</font><br>精英形态：使墓碑反向，出魅惑僵尸（魅惑墓碑上可种植物）</p>他有个“老墓食”的外号',
         PrivateBirth: function(a) {
             PlayAudio("gravebusterchomp");
             oSym.addTask(420,
@@ -622,7 +622,7 @@ oStarfruit = InheritO(CPlants, {
         AudioArr: ["splat1", "splat2", "splat3", "plastichit", "shieldhit", "shieldhit2"],
         PicArr: ["images/Card/Plants/Peashooter.png", "images/Plants/Peashooter/0.gif", "images/Plants/Peashooter/Peashooter.gif", "images/Plants/PB00.gif", "images/Plants/PeaBulletHit.gif"],
         Tooltip: "向敌人射出豌豆",
-        Produce: '豌豆射手，你的第一道防线。它们通过发射豌豆来攻击僵尸。<br>精英形态：点击可额外发射豌豆，但会扣自身血，若被点击死亡则召唤一个非精英豌豆射手僵尸<p>伤害：<font color="#FF0000">中等</font></p>一棵植物，怎么能如此快地生长，并发射如此多的豌豆呢？豌豆射手：“努力工作，奉献自己，再加上一份阳光，高纤维和氧化碳均衡搭配，这种健康早餐让一切成为可能。”',
+        Produce: '豌豆射手，你的第一道防线。它们通过发射豌豆来攻击僵尸。<br>精英形态：点击可额外发射豌豆，但会扣自身血，若被点击死亡则召唤一个非精英豌豆射手僵尸<p>伤害：<font color="#FF0000">中等</font></p>一棵植物，怎么能如此快地生长，并发射如此多的豌豆呢？豌豆射手：“努力工作，奉献自己，再加上一份阳光，高纤维和二氧化碳均衡搭配，这种健康早餐让一切成为可能。”',
         PrivateBirth: function(a) {
             a.BulletEle = NewImg(0, a.PicArr[3], "left:" + (a.AttackedLX - 40) + "px;top:" + (a.pixelTop + 3) + "px;visibility:hidden;z-index:" + (a.zIndex + 2))
         },
@@ -1179,7 +1179,7 @@ NormalAttack:function(a){
         PicArr: ["images/Card/Plants/SplitPea.png", "images/Plants/SplitPea/0.gif", "images/Plants/SplitPea/SplitPea.gif", "images/Plants/PB00.gif", "images/Plants/PB01.gif", "images/Plants/PeaBulletHit.gif"],
         AudioArr: ["splat1", "splat2", "splat3", "plastichit", "shieldhit", "shieldhit2"],
         Tooltip: "前后双向发射豌豆",
-        Produce: '分裂射手，可以向前后两个方向发射豌豆。<p>伤害：<font color="#FF0000">中等</font><br>范围：<font color="#FF0000">前面和后面</font><br>发射速度：<font color="#FF0000">前面为正常速度，后面为两倍速度</font><br>精英形态：<font color="#FF0000">真·分裂射手，种植时在本行左侧生成豌豆射手，在本行右侧生成反向双发，均不会被僵尸索敌</font></p>分裂射手：“没错，我就是双子座。我知道，这的确很令人惊奇。不过，有两个头，或者实际上，长着一个头和一个类似头的东西，在背上，对我这条线上的防守帮助很大。”',
+        Produce: '分裂射手，可以向前后两个方向发射豌豆。<p>伤害：<font color="#FF0000">中等</font><br>范围：<font color="#FF0000">前面和后面</font><br>发射速度：<font color="#FF0000">前面为正常速度，后面为两倍速度</font><br>精英形态：<font color="#FF0000">真·分裂射手，种植时在本行左侧生成豌豆射手，在本行右侧生成反向双发，两株植物在自身死亡20秒后自动消失</font></p>分裂射手：“没错，我就是双子座。我知道，这的确很令人惊奇。不过，有两个头，或者实际上，长着一个头和一个类似头的东西，在背上，对我这条线上的防守帮助很大。”',
         GetDX: function() {
             return -55
         },
@@ -1199,7 +1199,15 @@ NormalAttack:function(a){
                 c.aTri = [0, 0]
         },
         PrivateDie: function(a) {
-            a.BulletEle.length = 0
+            a.BulletEle.length = 0;
+			if(a.jinyin){
+				$P[a.leftPlantid]&&($P[a.leftPlantid].Ele.style.opacity=0.7);
+				$P[a.rightPlantid]&&($P[a.rightPlantid].Ele.style.opacity=0.7);
+				oSym.addTask(2000,function(a){
+					$P[a.leftPlantid]&&$P[a.leftPlantid].Die()
+					$P[a.rightPlantid]&&$P[a.rightPlantid].Die()
+				},[a])
+			}
         },
         TriggerCheck: function(b, a) {
             if (this.aTri[a]) {
@@ -1226,9 +1234,11 @@ NormalAttack:function(a){
 		jinyinAct:function(a){
 			var b=CustomSpecial(oPeashooter,a.R,0);
 			b.jinyin=b.canEat=0;
+			a.leftPlantid=b.id;
 			b.Ele.style.opacity=1;
 			var c=CustomSpecial(oRepeater2,a.R,10);
-			c.AttTime=c.canEat=c.jinyin=0
+			c.AttTime=c.canEat=c.jinyin=0;
+			a.rightPlantid=c.id;
 		},
         CheckLoop: function(a, b) {
             !this.FreeFreezeTime&&this.NormalAttack(b);
@@ -1480,7 +1490,7 @@ NormalAttack:function(a){
             }
         },
         Tooltip: "使你能够将非水生植物种在上面",
-        Produce: '睡莲可以让你种植非水生植物在它上面。</font></p>精英形态：虚化，不可被啃食<p>特点：<font color="#FF0000">非水生植物可以种植在它上面<br>必须种植在水面</font></p>睡莲从不抱怨，它也从来不想知道发生了什么事。在它身上种植物，它也不会说什么。难道，它有什么惊奇想法或者可怕的秘密？没人知道。睡莲把这些都埋藏在心底。'
+        Produce: '睡莲可以让你种植非水生植物在它上面。</font></p>精英形态：虚化，不可被啃食<p>特点：<font color="#FF0000">非水生植物可以种植在它上面<br>必须种植在水面</font></p>睡莲从不抱怨，它也从来不想知道发生了什么事。在它身上种植物，它也不会说什么。难道，它有什么惊奇想法或者可怕的秘密？是渴望拥有能开阔视野（或者别的用处）的第三只眼睛？还是它已经知晓自己在另一个虚拟宇宙中的身份？没人知道。睡莲把这些都埋藏在心底。'
     }),
     oPotatoMine = InheritO(CPlants, {
         EName: "oPotatoMine",
@@ -1603,7 +1613,7 @@ NormalAttack:function(a){
         PicArr: ["images/Card/Plants/Torchwood.png", "images/Plants/Torchwood/0.gif", "images/Plants/Torchwood/Torchwood.gif", "images/Plants/PB00.gif", "images/Plants/PB01.gif", "images/Plants/PB10.gif", "images/Plants/PB11.gif", "images/Plants/Torchwood/SputteringFire.gif"],
         AudioArr: ["firepea", "ignite", "ignite2"],
         Tooltip: "通过火炬树桩的豌豆将变为火球",
-        Produce: '火炬树桩可以把穿过他的豌豆变成火球，可以造成两倍伤害。<p>特点：<font color="#FF0000">让穿过他的火球造成两倍伤害。火球也会对附近僵尸造成溅射伤害</font><br>精英形态：每隔一段时间生产一个随机非紫卡植物罐子</p>每个人都喜欢并敬重火炬树桩。他们喜欢他的诚实和坚贞的友谊，以及增强豌豆伤害的能力，他曾经还找制陶工去拜师学艺',
+        Produce: '火炬树桩可以把穿过他的豌豆变成火球，可以造成两倍伤害。<p>特点：<font color="#FF0000">让穿过他的火球造成两倍伤害。火球也会对附近僵尸造成溅射伤害</font><br>精英形态：每隔一段时间生产一个随机非紫卡植物罐子</p>每个人都喜欢并敬重火炬树桩。他们喜欢他的诚实和坚贞的友谊，以及增强豌豆伤害的能力，他曾经还找制陶工去拜师学艺过',
         PrivateBirth: function(c) {
             var a = c.R,
                 b = c.C;
@@ -2612,7 +2622,7 @@ getFreeze:function(){},
   PicArr: ["images/Card/Plants/GloomShroom.png", "images/Plants/GloomShroom/0.gif", "images/Plants/GloomShroom/GloomShroom.gif", "images/Plants/GloomShroom/GloomShroomSleep.gif", "images/Plants/GloomShroom/GloomShroomAttack.gif", "images/Plants/GloomShroom/GloomShroomBullet.gif"],
   AudioArr: ["kernelpult", "kernelpult2"],
   Tooltip: "围绕自身释放大量绵羊音<br>(需要大喷菇)",
-  Produce: '它有两种形态，点击可切换（有冷却提示），两种形态有不同的效果<br>寒冰形态：对僵尸造成伤害和概率击退<br>火焰形态：伤害更高，有概率直接破甲(不会抵消减速)<br><font color="#FF0000">必须种植在大喷菇上</font><br>起初人们一直非议他，后来曾哥用自己独特的绵羊音横扫了宇宙拆迁办，全世界都拜倒在他的脚下。“听说有个节目叫‘快男’？”曾哥说，“没有我在他们真应该感到羞愧。”他于是决定去看看。',
+  Produce: '它有两种形态，点击可切换（有冷却提示），两种形态有不同的效果<br>寒冰形态：对僵尸造成伤害和概率击退<br>火焰形态：伤害更高，有概率直接破甲(不会抵消减速)<br><font color="#FF0000">必须种植在大喷菇上</font><br>曾哥有一个爱打棒球的姐姐，据坊间传言她是个病娇，曾将出轨她的男友和小三活活打死，并像《植物大战僵尸：旅行》的job一样创建了新游戏…不知怎的，曾哥对这件事讳莫如深。另外向日葵似乎很害怕曾姐，尽管她们从未见过面',
   CanGrow: function(b, a, d) {
     var c = b[1];
     return c && c.EName == "oFumeShroom"
