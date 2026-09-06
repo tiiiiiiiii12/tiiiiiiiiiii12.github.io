@@ -2392,7 +2392,7 @@ jinyinWalkGif12: 14,
             return ["images/Card/Zombies/DuckyTubeZombie1.png", b + "0.gif", b + "Walk1.gif", b + "Walk2.gif", b + "1.gif", b + "Attack.gif", "images/Zombies/Zombie/ZombieHead.gif" + $Random, a + "Die.gif" + $Random, a + "Walk1.gif", a + "Walk2.gif", a + "Attack.gif", b + "Walk1.gif", b + "Walk2.gif", b + "Attack.gif"]
         })()
     }),
-    oSnorkelZombie = InheritO(oDuckyTubeZombie1, {
+oSnorkelZombie = InheritO(oDuckyTubeZombie1, {
         EName: "oSnorkelZombie",
         CName: "潜水僵尸",
         Lvl: 2,
@@ -2406,10 +2406,12 @@ jinyinWalkGif12: 14,
 		intoWaterSpeed:2,
         Speed: 3.2,
         Altitude: 1,
-        Produce: '潜水僵尸可以在水下前行。<p>韧性：<font color="#FF0000">中(400)</font><br>特点：<font color="#FF0000">潜泳以避免遭到攻击，啃食时每秒回30血</font><br>精英形态：<font color="#FF0000">将他所遇到的第一株低血植物变为它的防具</font><br>只在水池关卡出现</font></p>僵尸不呼吸。他们不需要空气。那么为什么潜水僵尸需要一套潜水装置来潜水呢？<br>答案：同行的压力。',
+        Produce: '潜水僵尸可以在水下前行。<p>韧性：<font color="#FF0000">中(400)</font><br>特点：<font color="#FF0000">潜泳以避免遭到攻击，啃食时每秒回30血</font><br>精英形态一：<font color="#FF0000">将他所遇到的第一株低血植物变为它的防具</font><br>精英形态二：<font color="#FF0000">每隔一段时间在泳池随机来回跳跃</font><br>只在水池关卡出现</font></p>僵尸不呼吸。他们不需要空气。那么为什么潜水僵尸需要一套潜水装置来潜水呢？<br>答案：同行的压力。',
         JumpTime: 40,
 		catchCoolTime:1000,
 		jinyinAct:function(a){
+a.num=a.Privatenum||Math.random()*100;
+if(a.num>=50){
 			a.EleBody.style.filter = 'grayscale(400%)';
 			a.cangetOrn=1;
 			a.OrnLostNormalGif=a.NormalGif;
@@ -2436,7 +2438,22 @@ jinyinWalkGif12: 14,
 				c.OrnHP<1&&(ClearChild($(c.Ele.NutHead)),oSym.addTask(c.catchCoolTime,function(c){$Z[c.id]&&(c.cangetOrn=1,c.Speed*=2,c.OSpeed*=2)},[c]));
 			  }
 			}
+}else{
+a.EleBody.style.filter = "sepia(1) hue-rotate(20deg) brightness(5)";
+oSym.addTask(500,function(a){
+$Z[a.id]&&a.beAttacked&&(++a.Movenum,a.Move(a),oSym.addTask(Math.random()*300+700,arguments.callee,[a]));
+},[a])
+}
 		},
+Movenum:0,
+Move:function(a){
+PlayAudio("portal");
+Math.random()*100>50&&a.ChangeR({R:a.R});
+a.getr(a,(Math.random()*100+100)*(a.WalkDirection?1:-1));
+if(a.Movenum>6)return a.WalkDirection==a.PZ&&(a.PZ?a.reNormal(a):a.bedevil(a,1)),a.Jump(a);
+a.ZX>=600&&a.WalkDirection?a.reNormal(a):a.ZX<=360&&a.bedevil(a,1);
+a.Jump(a)
+},
         getShadow: function(a) {
             return "left:" + a.beAttackedPointL + "px;top:" + (a.height - 45) + "px"
         },
